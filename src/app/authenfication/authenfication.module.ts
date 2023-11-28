@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RegistrationComponent} from "./registration/registration.component";
 import {AuthorizationComponent} from "./authorization/authorization.component";
+import {VerificationService} from "./verification.service";
+import {RouterModule} from "@angular/router";
+import {AppRoutingModule} from "../app-routing.module";
 
 
 
@@ -12,6 +15,8 @@ import {AuthorizationComponent} from "./authorization/authorization.component";
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports:[RouterModule]
+
 })
 export class AuthenficationModule { }

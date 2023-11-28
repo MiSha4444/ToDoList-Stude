@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-editing-creating-tasks',
   templateUrl: './editing-creating-tasks.component.html',
-  styleUrls: ["./editing-creating-tasks.component.scc"],
+  styleUrls: ["./editing-creating-tasks.component.scss"],
 })
 export class EditingCreatingTasksComponent {
 
