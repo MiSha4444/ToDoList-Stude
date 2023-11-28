@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// @ts-ignore
 @Component({
   selector: 'app-editing-creating-tasks',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './editing-creating-tasks.component.html',
-  styleUrl: './editing-creating-tasks.component.scss'
+  styleUrls: ["./editing-creating-tasks.component.scc"],
 })
 export class EditingCreatingTasksComponent {
 
