@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ToDoList-stude:build:production"
+              "buildTarget": "ToDoList-stude:build:production"
             },
             "development": {
-              "browserTarget": "ToDoList-stude:build:development"
+              "buildTarget": "ToDoList-stude:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ToDoList-stude:build"
+            "buildTarget": "ToDoList-stude:build"
           }
         },
         "test": {
