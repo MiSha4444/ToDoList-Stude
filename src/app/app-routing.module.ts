@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {AuthorizationComponent} from "./authenfication/authorization/authorization.component";
-import {RegistrationComponent} from "./authenfication/registration/registration.component";
+import {AuthorizationComponent} from "./authenfication/components/authorization/authorization.component";
+import {RegistrationComponent} from "./authenfication/components/registration/registration.component";
 import {DisplayDeletingTasksComponent} from "./tasks/display-deleting-tasks/display-deleting-tasks.component";
 import {
   AddingDeletingCategoriesComponent
