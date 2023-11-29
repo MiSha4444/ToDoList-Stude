@@ -15,6 +15,7 @@ import {RouterModule, Routes} from "@angular/router";
     AppComponent,
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     TasksCategoriesModule,

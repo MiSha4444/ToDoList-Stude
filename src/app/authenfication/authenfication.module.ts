@@ -5,6 +5,7 @@ import {AuthorizationComponent} from "./authorization/authorization.component";
 import {VerificationService} from "./verification.service";
 import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from "../app-routing.module";
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -14,7 +15,8 @@ import {AppRoutingModule} from "../app-routing.module";
     AuthorizationComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports:[RouterModule]
 
