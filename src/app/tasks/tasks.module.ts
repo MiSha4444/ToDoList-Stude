@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {EditingCreatingTasksComponent} from "./editing-creating-tasks/editing-creating-tasks.component";
-import {DisplayDeletingTasksComponent} from "./display-deleting-tasks/display-deleting-tasks.component";
+
+import {EditingCreatingTasksComponent} from "./сomponents/editing-creating-tasks/editing-creating-tasks.component";
+import {DisplayDeletingTasksComponent} from "./сomponents/display-deleting-tasks/display-deleting-tasks.component";
 import {AppRoutingModule} from "../app-routing.module";
 import {RouterModule} from "@angular/router";
 
@@ -14,7 +14,6 @@ import {RouterModule} from "@angular/router";
     DisplayDeletingTasksComponent,
   ],
   imports: [
-    CommonModule
   ],
   exports:[RouterModule]
 })
