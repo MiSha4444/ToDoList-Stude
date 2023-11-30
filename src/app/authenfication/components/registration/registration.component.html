@@ -1,4 +1,11 @@
-<p>Адрес элетронной почты<input><p>
-<p>дата рождея<input><p>
-<p>Логин<input><p>
-<p>пароль<input><p>
+<form>
+  <p>Адрес элетронной почты<input type="email" formControlName="email" [formGroup]="registrationform"
+                                  (ngSubmit)="submit()">
+  <p>дата рождения<input type="date" formControlName='birthday'>
+  <p>Имя<input type="text" formControlName="username">
+  <p>пароль<input type="password" formControlName="password">
+  <p>повторите пароль пароль<input type="password" formControlName="password2">
+  <p>
+    <button type="submit">Зарегистрироваться</button>
+  </p>
+</form>
