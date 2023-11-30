@@ -15,6 +15,7 @@ export class AuthorizationComponent implements OnInit{
         Validators.required,
       ]),
       password: new FormControl('',[Validators.required])
+
     })
   }
   submit(){

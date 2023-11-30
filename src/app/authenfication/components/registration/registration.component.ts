@@ -15,9 +15,9 @@ export class RegistrationComponent {
         Validators.email,
         Validators.required,
       ]),
-      password: new FormControl('',[Validators.required,Validators.min(6)]),
+      password: new FormControl('dasd',[Validators.required,Validators.min(6)]),
       date: new FormControl('',[Validators.required]),
-
+      username: new FormControl('')
     })
   }
 }

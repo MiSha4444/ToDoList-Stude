@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {RegistrationComponent} from "./components/registration/registration.component";
 import {AuthorizationComponent} from "./components/authorization/authorization.component";
 import {RouterModule} from "@angular/router";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -13,7 +13,8 @@ import {FormsModule} from "@angular/forms";
     AuthorizationComponent,
   ],
   imports: [
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[RouterModule]
 

@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import {TasksCategoriesModule} from "./tasks-categories/tasks-categories.module";
 import {TasksModule} from "./tasks/tasks.module";
 import {AuthenficationModule} from "./authenfication/authenfication.module";
-import {RouterModule, Routes} from "@angular/router";
+import {RouterModule} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -21,6 +22,8 @@ import {RouterModule, Routes} from "@angular/router";
     TasksCategoriesModule,
     TasksModule,
     AuthenficationModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
