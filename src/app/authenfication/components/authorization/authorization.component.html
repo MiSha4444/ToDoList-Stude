@@ -1,6 +1,10 @@
-<p>Логин<input id="login" name="login" [(ngModel)]="login">
-<p>пароль<input id="password" name="password" [(ngModel)]="password">
-<p><button (click)="authorizationEvent()">Войти</button></p>
-{{login}}
-{{password}}
+<div class="">
+  <form class="p-card-body" [formGroup]="authorizationform" (ngSubmit)="submit()" >
+    <p>email<input type="email" id="login" name="login" formControlName="email">
+    <p>пароль<input type="password" id="password" name="password" formControlName="password">
+    <p>
+      <button type="submit" [disabled]="authorizationform.invalid">Войти</button>
+    </p>
+  </form>
 
+</div>
