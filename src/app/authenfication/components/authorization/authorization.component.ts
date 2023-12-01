@@ -14,11 +14,11 @@ interface user {
   providers: [VerificationService],
 })
 export class AuthorizationComponent implements OnInit {
-  authorizationFlag: boolean = false;
+  private authorizationFlag: boolean = false;
 
-  authorizationform!: FormGroup;
+  public authorizationform!: FormGroup;
 
-  users: user[] = [{
+  private users: user[] = [{
     username: "misnash4895@gmail.com",
     password: "1111"
   }, {
