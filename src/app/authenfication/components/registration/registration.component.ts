@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 
@@ -7,9 +7,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit{
   registrationform!: FormGroup;
-  submit(){
+  ngOnInit() {
     this.registrationform = new FormGroup({
       email: new FormControl('',[
         Validators.email,
@@ -19,5 +19,8 @@ export class RegistrationComponent {
       date: new FormControl('',[Validators.required]),
       username: new FormControl('')
     })
+  }
+
+  submit(){
   }
 }
