@@ -10,7 +10,10 @@ import {VerificationService} from "../../service/verification.service";
   providers: [VerificationService]
 })
 export class RegistrationComponent implements OnInit {
-  registrationform!: FormGroup;
+  public registrationform!: FormGroup;
+
+  constructor( private verificationService: VerificationService) {
+  }
 
   ngOnInit() {
     this.registrationform = new FormGroup({
@@ -18,13 +21,13 @@ export class RegistrationComponent implements OnInit {
         Validators.email,
         Validators.required,
       ]),
-      password: new FormControl('dasd', [Validators.required, Validators.min(6)]),
-      date: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.min(6)]),
+      date: new FormControl(''),
       username: new FormControl('')
     })
   }
 
-  submit() {
-
+  submitRegistration() {
+    this.verificationService.userRegistration(this.registrationform)
   }
 }
