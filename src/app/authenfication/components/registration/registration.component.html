@@ -1,10 +1,11 @@
-<form>
-  <p>Адрес элетронной почты<input type="email" formControlName="email" [formGroup]="registrationform"
-                                  (ngSubmit)="submit()">
-  <p>дата рождения<input type="date" formControlName='birthday'>
+<form [formGroup]="registrationform" (ngSubmit)="submitRegistration()">
+  <p>Адрес элетронной почты<input type="email" formControlName="email">
+  <p>дата рождения<input type="date" formControlName='date'>
   <p>Имя<input type="text" formControlName="username">
   <p>пароль<input type="password" formControlName="password">
+<!--
   <p>повторите пароль пароль<input type="password" formControlName="password2">
+-->
   <p>
     <button type="submit">Зарегистрироваться</button>
   </p>
