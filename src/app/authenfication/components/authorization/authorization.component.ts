@@ -13,21 +13,18 @@ interface user {
   styleUrls: ['./authorization.component.scss'],
   providers: [VerificationService],
 })
+
 export class AuthorizationComponent implements OnInit {
-  private authorizationFlag: boolean = false;
+  public authorizationFlag: boolean = this.verificationService.authorizationFlag;
 
-  public authorizationform!: FormGroup;
+  public authorizationForm!: FormGroup;
 
-  private users: user[] = [{
-    username: "misnash4895@gmail.com",
-    password: "1111"
-  }, {
-    username: "test2@g",
-    password: "2222"
-  }];
+  constructor(private verificationService: VerificationService) {
+
+  }
 
   ngOnInit() {
-    this.authorizationform = new FormGroup({
+    this.authorizationForm = new FormGroup({
       login: new FormControl('', [
         Validators.email,
         Validators.required,
@@ -38,16 +35,6 @@ export class AuthorizationComponent implements OnInit {
   }
 
    public submit() {
-    if (this.authorizationform.valid && this.authorizationform.valid) {
+      this.verificationService.checkAuthorization(this.authorizationForm);
     }
-    const checkUser = this.users
-      .find(users => users.username == this.authorizationform.value.login) ?? '';
-    //console.log(checkUser.password)
-    if (checkUser) {
-      const i = checkUser.password == this.authorizationform.value.password ?
-        this.authorizationFlag = true
-        : this.authorizationFlag = false;
-    }
-
-  }
 }
