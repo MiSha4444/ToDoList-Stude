@@ -6,6 +6,9 @@ import {AppRoutingModule} from "../app-routing.module";
 import {RouterModule} from "@angular/router";
 import {TableModule} from "primeng/table";
 import {NgForOf} from "@angular/common";
+import {ToolbarModule} from "primeng/toolbar";
+import {DialogModule} from "primeng/dialog";
+import {RadioButtonModule} from "primeng/radiobutton";
 
 
 
@@ -15,10 +18,13 @@ import {NgForOf} from "@angular/common";
     EditingCreatingTasksComponent,
     DisplayDeletingTasksComponent,
   ],
-    imports: [
-        TableModule,
-        NgForOf
-    ],
+  imports: [
+    TableModule,
+    NgForOf,
+    ToolbarModule,
+    DialogModule,
+    RadioButtonModule
+  ],
   exports:[RouterModule]
 })
 export class TasksModule { }
