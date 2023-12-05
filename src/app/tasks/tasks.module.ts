@@ -4,6 +4,8 @@ import {EditingCreatingTasksComponent} from "./сomponents/editing-creating-task
 import {DisplayDeletingTasksComponent} from "./сomponents/display-deleting-tasks/display-deleting-tasks.component";
 import {AppRoutingModule} from "../app-routing.module";
 import {RouterModule} from "@angular/router";
+import {TableModule} from "primeng/table";
+import {NgForOf} from "@angular/common";
 
 
 
@@ -13,8 +15,10 @@ import {RouterModule} from "@angular/router";
     EditingCreatingTasksComponent,
     DisplayDeletingTasksComponent,
   ],
-  imports: [
-  ],
+    imports: [
+        TableModule,
+        NgForOf
+    ],
   exports:[RouterModule]
 })
 export class TasksModule { }
