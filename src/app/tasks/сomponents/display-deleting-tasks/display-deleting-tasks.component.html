@@ -1,95 +1,72 @@
 <div class="card">
   <p-toolbar styleClass="p-mb-4">
     <ng-template pTemplate="left">
-      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+      klhlkjhlkjhlkjhlkj
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+              (click)="openNew()"></button>
     </ng-template>
   </p-toolbar>
-  <!-- Задачи -->
-  <p-table #dt [value]="tasks" [rows]="10" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" [rowHover]="true" dataKey="id"
-           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-    <ng-template pTemplate="header">
+
+
+  <p-table [columns]="cols" [value]="tasks">
+    <ng-template pTemplate="header" let-columns>
       <tr>
-        <th style="width: 3rem">
-          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        <th *ngFor="let col of columns">
+          {{col.header}}
         </th>
-        <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-        <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
-        <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
-        <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th>
-        <th></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
-        <td>
-          <p-tableCheckbox [value]="product"></p-tableCheckbox>
-        </td>
-        <td>{{tasks.}}</td>
-        <td>{{product.category}}</td>
-        <td><span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span></td>
-        <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editProduct(product)"></button>
-          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+        <td *ngFor="let col of columns">
+          {{rowData[col.field]}}
         </td>
       </tr>
-    </ng-template>
-    <ng-template pTemplate="summary">
-      <div class="p-d-flex p-ai-center p-jc-between">
-        In total there are {{tasks ? tasks.length : 0 }} products.
-      </div>
     </ng-template>
   </p-table>
+
+  <p-dialog [(visible)]="taskDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
+            styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+    <div class="p-field">
+        <small class="p-invalid" *ngIf="submitted && !task.name">Name is required.</small>
+      </div>
+      <div class="p-field">
+        <label for="description">Description</label>
+        <textarea id="description" pInputTextarea [(ngModel)]="task.description" required rows="3"
+                  cols="20"></textarea>
+      </div>
+
+      <div class="p-field">
+        <label class="p-mb-3">Category</label>
+        <div class="p-formgrid p-grid">
+          <div class="p-field-radiobutton p-col-6">
+            <p-radioButton id="category1" name="category" value="Accessories"
+                           [(ngModel)]="task.category"></p-radioButton>
+            <label for="category1">Accessories</label>
+          </div>
+          <div class="p-field-radiobutton p-col-6">
+            <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="task.category"></p-radioButton>
+            <label for="category2">Clothing</label>
+          </div>
+          <div class="p-field-radiobutton p-col-6">
+            <p-radioButton id="category3" name="category" value="Electronics"
+                           [(ngModel)]="task.category"></p-radioButton>
+            <label for="category3">Electronics</label>
+          </div>
+          <div class="p-field-radiobutton p-col-6">
+            <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="task.category"></p-radioButton>
+            <label for="category4">Fitness</label>
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+      <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+    </ng-template>
+  </p-dialog>
 </div>
-<!-- модальные окна  -->
-<p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true" styleClass="p-fluid">
-  <ng-template pTemplate="content">
-    <div class="p-field">
-      <label for="name">Name</label>
-      <small class="p-invalid" *ngIf="submitted && !tasks.name">Name is required.</small>
-    </div>
-    <div class="p-field">
-      <label for="description">Description</label>
-      <textarea id="description" pInputTextarea [(ngModel)]="tasks.description" required rows="3" cols="20"></textarea>
-    </div>
-
-    <div class="p-field">
-      <label class="p-mb-3">Category</label>
-      <div class="p-formgrid p-grid">
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="tasks.category"></p-radioButton>
-          <label for="category1">Accessories</label>
-        </div>
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="tasks.category"></p-radioButton>
-          <label for="category2">Clothing</label>
-        </div>
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton id="category3" name="category" value="Electronics" [(ngModel)]="tasks.category"></p-radioButton>
-          <label for="category3">Electronics</label>
-        </div>
-        <div class="p-field-radiobutton p-col-6">
-          <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="tasks.category"></p-radioButton>
-          <label for="category4">Fitness</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="p-formgrid p-grid">
-      <div class="p-field p-col">
-        <label for="price">Price</label>
-        <p-inputNumber id="price" [(ngModel)]="tasks.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
-      </div>
-      <div class="p-field p-col">
-        <label for="quantity">Quantity</label>
-        <p-inputNumber id="quantity" [(ngModel)]="tasks.quantity"></p-inputNumber>
-      </div>
-    </div>
-  </ng-template>
-
-  <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
-  </ng-template>
-</p-dialog>
-
-<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
