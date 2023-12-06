@@ -8,6 +8,7 @@ import {TasksModule} from "./tasks/tasks.module";
 import {AuthenficationModule} from "./authenfication/authenfication.module";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 
@@ -24,6 +25,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     AuthenficationModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
