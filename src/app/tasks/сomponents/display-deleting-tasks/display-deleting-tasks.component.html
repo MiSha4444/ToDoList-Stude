@@ -1,7 +1,6 @@
 <div class="card">
   <p-toolbar styleClass="p-mb-4">
     <ng-template pTemplate="left">
-      klhlkjhlkjhlkjhlkj
       <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
               (click)="openNew()"></button>
     </ng-template>
@@ -16,51 +15,59 @@
         </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-task>
       <tr>
         <td *ngFor="let col of columns">
           {{rowData[col.field]}}
         </td>
+        <td>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+                  (click)="editTask(task)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                  (click)="deleteTask(task)"></button>
+        </td>
       </tr>
+
     </ng-template>
   </p-table>
 
-  <p-dialog [(visible)]="taskDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
+  <p-dialog [(visible)]="taskDialog" [style]="{width: '450px'}" header="Создание задачи" [modal]="true"
             styleClass="p-fluid">
 
     <ng-template pTemplate="content">
-    <div class="p-field">
+      <div class="p-field">
         <small class="p-invalid" *ngIf="submitted && !task.name">Name is required.</small>
       </div>
       <div class="p-field">
-        <label for="description">Description</label>
-        <textarea id="description" pInputTextarea [(ngModel)]="task.description" required rows="3"
+        <label for="user">Имя исполнителя</label>
+        <input pInputText type="text" id="user" [(ngModel)]="task.user">
+      </div>
+      <div class="p-field">
+        <label for="name">Задача</label>
+        <textarea id="name" pInputTextarea [(ngModel)]="task.name" required rows="3"
                   cols="20"></textarea>
       </div>
-
+      <div class="p-field">
+        <label for="date">Дата</label>
+        <input id="date" pInputText type="date" [(ngModel)]="task.date">
+      </div>
       <div class="p-field">
         <label class="p-mb-3">Category</label>
         <div class="p-formgrid p-grid">
-          <div class="p-field-radiobutton p-col-6">
-            <p-radioButton id="category1" name="category" value="Accessories"
-                           [(ngModel)]="task.category"></p-radioButton>
-            <label for="category1">Accessories</label>
-          </div>
-          <div class="p-field-radiobutton p-col-6">
-            <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="task.category"></p-radioButton>
-            <label for="category2">Clothing</label>
-          </div>
-          <div class="p-field-radiobutton p-col-6">
-            <p-radioButton id="category3" name="category" value="Electronics"
-                           [(ngModel)]="task.category"></p-radioButton>
-            <label for="category3">Electronics</label>
-          </div>
-          <div class="p-field-radiobutton p-col-6">
-            <p-radioButton id="category4" name="category" value="Fitness" [(ngModel)]="task.category"></p-radioButton>
-            <label for="category4">Fitness</label>
+          <div class="p-dropdown ">
+            <p-dropdown id="category" name="category" [(ngModel)]="task.category">sdsad</p-dropdown>
           </div>
         </div>
       </div>
+      <div class="p-field">
+        <label class="p-mb-3">Статус</label>
+        <div class="p-formgrid p-grid">
+          <div class="p-dropdown ">
+            <p-dropdown id="status" name="status" [(ngModel)]="task.status"> sdsad</p-dropdown>
+          </div>
+        </div>
+      </div>
+
 
     </ng-template>
 
@@ -70,3 +77,4 @@
     </ng-template>
   </p-dialog>
 </div>
+{{this.tasks | json}}
