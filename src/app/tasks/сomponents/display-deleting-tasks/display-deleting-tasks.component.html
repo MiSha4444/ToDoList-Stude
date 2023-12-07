@@ -7,10 +7,11 @@
   </p-toolbar>
 
 
-  <p-table [columns]="cols" [value]="tasks">
+  <p-table [columns]="cols" [value]="tasks" [tableStyle]="{ 'min-width': '50rem' }" >
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <th *ngFor="let col of columns">
+        <th *ngFor="let col of columns"  pSortableColumn='col'>
+          <p-sortIcon field='col'>{{col.header}}</p-sortIcon>
           {{col.header}}
         </th>
       </tr>
@@ -48,20 +49,20 @@
                   cols="20"></textarea>
       </div>
       <div class="p-field">
-        <label for="date">Дата</label>
-        <input id="date" pInputText type="date" [(ngModel)]="task.date">
+        <label for="date" >Дата</label>
+        <p-calendar id="date" [inline]="true" dateFormat="dd.mm.yy" [(ngModel)]="task.date"></p-calendar>
       </div>
       <div class="p-field">
         <label class="p-mb-3">Category</label>
-        <div class="p-formgrid p-grid">
+        <div class="p-form grid p-grid">
           <div class="p-dropdown ">
-            <p-dropdown id="category" name="category" [(ngModel)]="task.category">sdsad</p-dropdown>
+            <p-dropdown id="category" name="category" [(ngModel)]="task.category"></p-dropdown>
           </div>
         </div>
       </div>
       <div class="p-field">
         <label class="p-mb-3">Статус</label>
-        <div class="p-formgrid p-grid">
+        <div class="p-form grid p-grid">
           <div class="p-dropdown ">
             <p-dropdown id="status" name="status" [(ngModel)]="task.status"> sdsad</p-dropdown>
           </div>
@@ -77,4 +78,3 @@
     </ng-template>
   </p-dialog>
 </div>
-{{this.tasks | json}}
