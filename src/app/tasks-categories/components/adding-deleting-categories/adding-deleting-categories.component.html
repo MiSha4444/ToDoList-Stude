@@ -1,1 +1,9 @@
-<p>adding-deleting-categories works!</p>
+<p-card>
+  <p *ngFor="let col of categories" >
+    {{col}}
+    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+            (click)="editCategory()"></button>
+    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+            (click)="deleteCategory(category)"></button>
+  </p>
+</p-card>
