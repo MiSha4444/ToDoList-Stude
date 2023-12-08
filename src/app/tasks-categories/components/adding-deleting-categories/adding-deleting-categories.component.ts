@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-adding-deleting-categories',
@@ -7,5 +7,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./adding-deleting-categories.component.scss']
 })
 export class AddingDeletingCategoriesComponent {
+  public categories: string[] = ['Домашние дела', 'Учеба', 'Работа']
 
 }
