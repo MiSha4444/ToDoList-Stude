@@ -4,7 +4,7 @@ import {EditingCreatingTasksComponent} from "./сomponents/editing-creating-task
 import {DisplayDeletingTasksComponent} from "./сomponents/display-deleting-tasks/display-deleting-tasks.component";
 import {RouterModule} from "@angular/router";
 import {TableModule} from "primeng/table";
-import {JsonPipe, NgForOf, NgIf} from "@angular/common";
+import {DatePipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {ToolbarModule} from "primeng/toolbar";
 import {DialogModule} from "primeng/dialog";
 import {RadioButtonModule} from "primeng/radiobutton";
@@ -25,23 +25,24 @@ import {CalendarModule} from "primeng/calendar";
     EditingCreatingTasksComponent,
     DisplayDeletingTasksComponent,
   ],
-    imports: [
-        TableModule,
-        NgForOf,
-        ToolbarModule,
-        DialogModule,
-        RadioButtonModule,
-        FormsModule,
-        NgIf,
-        RippleModule,
-        ButtonModule,
-        InputTextareaModule,
-        ChipsModule,
-        DataViewModule,
-        DropdownModule,
-        JsonPipe,
-        CalendarModule
-    ],
+  imports: [
+    TableModule,
+    NgForOf,
+    ToolbarModule,
+    DialogModule,
+    RadioButtonModule,
+    FormsModule,
+    NgIf,
+    RippleModule,
+    ButtonModule,
+    InputTextareaModule,
+    ChipsModule,
+    DataViewModule,
+    DropdownModule,
+    JsonPipe,
+    CalendarModule,
+    DatePipe
+  ],
   exports:[RouterModule],
 })
 export class TasksModule { }
