@@ -1,9 +1,8 @@
-import {Component} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
-import {TransferringCategoryService} from "../../../transferring-category.service";
+import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 
-interface category {
+export interface category {
     name: string
     id: string
     description?: string
@@ -14,6 +13,7 @@ interface category {
     templateUrl: './adding-deleting-categories.component.html',
     styleUrls: ['./adding-deleting-categories.component.scss'],
     providers: [TransferringCategoryService],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddingDeletingCategoriesComponent {
 
@@ -22,18 +22,18 @@ export class AddingDeletingCategoriesComponent {
     categoryDialog: boolean = false;
 
     category: any;
-
     public categories: category[] = [
-        {name: 'домашние дела', id: '1',description:'Уборк, Стирка, То что мама заставит сделать'},
-        {name: 'Работа', id: '1',description:'Стажирока в лучшей компании мира!!!'},
+        {name: 'домашние дела', id: '1', description: 'Уборк, Стирка, То что мама заставит сделать'},
+        {name: 'Работа', id: '1', description: 'Стажирока в лучшей компании мира!!!'},
         {name: 'Альденте', id: '1',},
-        {name: 'учеба', id: '1',description:'Надоела эта ваша шарага'},
+        {name: 'учеба', id: '1', description: 'Надоела эта ваша шарага'},
     ]
 
     cols: any[] = [
         {field: 'name', header: 'Название категории',},
         {field: 'description', header: 'Описание категории',},
     ]
+    @Output() e: category[] = this.categories
 
     constructor(public messageService: MessageService, public confirmationService: ConfirmationService) {
     }
