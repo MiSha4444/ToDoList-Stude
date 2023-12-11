@@ -2,6 +2,10 @@ import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ConfirmationService, MessageService} from "primeng/api";
 
+interface category {
+  name?: string
+  id?: string
+}
 
 @Component({
   selector: 'app-adding-deleting-categories',
@@ -9,26 +13,98 @@ import {ConfirmationService, MessageService} from "primeng/api";
   styleUrls: ['./adding-deleting-categories.component.scss']
 })
 export class AddingDeletingCategoriesComponent {
-  public categories: string[] = ['Домашние дела', 'Учеба', 'Работа']
-  category: any
+
+  submitted: boolean = false;
+
+  categoryDialog: boolean = false;
+
+  category: any;
+
+  public categories: category[] = [
+    {name: 'домашние дела', id: '1'},
+    {name: 'Работа', id: '1'},
+    {name: 'Альденте', id: '1'},
+    {name: 'учеба', id: '1'},
+  ]
+
+  cols: any[] = [
+    {field: 'name', header: 'Название категории'},
+  ]
 
   constructor(public messageService: MessageService, public confirmationService: ConfirmationService) {
   }
 
-  editCategory() {
-
+  hideDialog() {
+    this.categoryDialog = false;
+    this.submitted = false;
   }
 
-  deleteCategory(category: any) {
+  OpenNew() {
+    this.category = {};
+    this.submitted = false;
+    this.categoryDialog = true;
+  }
+
+  saveCategory() {
+    this.submitted = true;
+
+    if (this.category.name.trim()) {
+      if (this.category.id) {
+        this.categories[this.findIndexById(this.category.id)] = this.category;
+      } else {
+        this.category.id = this.createId();
+        this.categories.push(this.category);
+      }
+
+      this.categories = [...this.categories];
+      this.categoryDialog = false;
+    }
+    this.categories = [...this.category];
+    this.categoryDialog = false;
+    this.category = {};
+  }
+
+  editCategory(category: category) {
+      this.category = {...category};
+      console.log(this.category = {...category})
+      this.categoryDialog = true;
+    }
+
+  deleteCategory(category: category) {
+    console.log('dadss')
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + this.category + '?',
+      message: 'Are you sure you want to delete ' + this.category.name + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
+        this.categories = this.categories.filter(val => val.id !== category.id);
         this.category = {};
-        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Task Deleted', life: 3000});
+        this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Category', life: 3000});
       }
 
     });
+    console.log('dad222')
+  }
+
+  findIndexById(id: string): number {
+    let index = -1;
+    for (let i = 0; i < this.categories.length; i++) {
+      if (this.categories[i].id === id) {
+        index = i;
+        break;
+      }
+    }
+
+    return index;
+  }
+
+  createId(): string {
+    let id = '';
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (var i = 0; i < 5; i++) {
+      id += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    console.log(id)
+    return id;
   }
 }
