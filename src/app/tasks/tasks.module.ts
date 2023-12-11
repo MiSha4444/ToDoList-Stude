@@ -16,6 +16,7 @@ import {ChipsModule} from "primeng/chips";
 import {DataViewModule} from "primeng/dataview";
 import {DropdownModule} from "primeng/dropdown";
 import {CalendarModule} from "primeng/calendar";
+import {ConfirmationService, MessageService} from "primeng/api";
 
 
 
@@ -44,5 +45,6 @@ import {CalendarModule} from "primeng/calendar";
     DatePipe
   ],
   exports:[RouterModule],
+  providers:[MessageService, ConfirmationService],
 })
 export class TasksModule { }

@@ -4,10 +4,18 @@ import {AddingDeletingCategoriesComponent} from "./components/adding-deleting-ca
 import {CreateEditcategoriesComponent} from "./components/create-editcategories/create-editcategories.component";
 import {RouterModule} from '@angular/router';
 import {FormsModule} from "@angular/forms";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
+import {ToolbarModule} from "primeng/toolbar";
+import {StyleClassModule} from "primeng/styleclass";
+import {TableModule} from "primeng/table";
+import {CalendarModule} from "primeng/calendar";
+import {DialogModule} from "primeng/dialog";
+import {DropdownModule} from "primeng/dropdown";
+import {InputTextModule} from "primeng/inputtext";
+import {InputTextareaModule} from "primeng/inputtextarea";
 
 
 
@@ -22,7 +30,16 @@ import {RippleModule} from "primeng/ripple";
     NgForOf,
     CardModule,
     ButtonModule,
-    RippleModule
+    RippleModule,
+    ToolbarModule,
+    StyleClassModule,
+    TableModule,
+    CalendarModule,
+    DialogModule,
+    DropdownModule,
+    InputTextModule,
+    InputTextareaModule,
+    NgIf
   ],
   exports:[RouterModule]
 })
