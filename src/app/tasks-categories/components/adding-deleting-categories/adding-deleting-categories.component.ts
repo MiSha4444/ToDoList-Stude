@@ -1,12 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
-
-export interface category {
-    name: string
-    id: string
-    description?: string
-}
+import {category} from "../../../shared/interfaces";
 
 @Component({
     selector: 'app-adding-deleting-categories',
@@ -16,6 +11,7 @@ export interface category {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddingDeletingCategoriesComponent {
+    cat:string = 'dsadsa'
 
     submitted: boolean = false;
 
@@ -24,18 +20,21 @@ export class AddingDeletingCategoriesComponent {
     category: any;
     public categories: category[] = [
         {name: 'домашние дела', id: '1', description: 'Уборк, Стирка, То что мама заставит сделать'},
-        {name: 'Работа', id: '1', description: 'Стажирока в лучшей компании мира!!!'},
-        {name: 'Альденте', id: '1',},
-        {name: 'учеба', id: '1', description: 'Надоела эта ваша шарага'},
+        {name: 'Работа', id: '2', description: 'Стажирока в лучшей компании мира!!!'},
+        {name: 'Альденте', id: '3',},
+        {name: 'учеба', id: '4', description: 'Надоела эта ваша шарага'},
     ]
 
     cols: any[] = [
         {field: 'name', header: 'Название категории',},
         {field: 'description', header: 'Описание категории',},
     ]
-    @Output() e: category[] = this.categories
 
-    constructor(public messageService: MessageService, public confirmationService: ConfirmationService) {
+    constructor(public messageService: MessageService,
+                public confirmationService: ConfirmationService,
+                public transService:TransferringCategoryService
+    ){
+        this.transService.cat = this.categories.map(category => category.description )
     }
 
     hideDialog() {
