@@ -1,15 +1,7 @@
 import {Component} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
-
-interface task {
-    status: string
-    name: string
-    user: string
-    date: string
-    category: string
-    id: number | string
-}
+import {category, task} from "../../../shared/interfaces";
 
 @Component({
     selector: 'app-display-deleting-tasks',
@@ -23,7 +15,12 @@ export class DisplayDeletingTasksComponent {
 
     taskDialog: boolean = false;
 
-    constructor(public messageService: MessageService, public confirmationService: ConfirmationService) {
+    cat: category[] | undefined
+
+    status: string[] = ['выполнено', 'просрочено', 'в работе'];
+
+    constructor(public messageService: MessageService, public confirmationService: ConfirmationService , public transServise:TransferringCategoryService) {
+        this.cat = this.transServise.cat
     }
 
 
