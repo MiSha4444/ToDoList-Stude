@@ -17,7 +17,7 @@ import {DataViewModule} from "primeng/dataview";
 import {DropdownModule} from "primeng/dropdown";
 import {CalendarModule} from "primeng/calendar";
 import {ConfirmationService, MessageService} from "primeng/api";
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 
@@ -42,7 +42,8 @@ import {ConfirmationService, MessageService} from "primeng/api";
     DropdownModule,
     JsonPipe,
     CalendarModule,
-    DatePipe
+    DatePipe,
+    ConfirmDialogModule
   ],
   exports:[RouterModule],
   providers:[MessageService, ConfirmationService],
