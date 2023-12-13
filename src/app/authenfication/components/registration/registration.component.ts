@@ -27,11 +27,11 @@ export class RegistrationComponent implements OnInit {
     }
 
     submitRegistration() {
-        let user = [this.registrationform.value]
+        let user = this.registrationform.value
         // @ts-ignore
-        let newUserData = {user:[]=user, tasks: [], categories: []}
+        let newUserData = {...user, tasks: [], categories: []}
         console.log(this.registrationform.value)
-        localStorage.setItem(this.registrationform.value.username,JSON.stringify(newUserData))
+        localStorage.setItem(this.registrationform.value.email, JSON.stringify(newUserData))
     }
 
 }

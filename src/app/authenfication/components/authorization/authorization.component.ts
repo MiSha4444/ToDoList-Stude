@@ -1,12 +1,7 @@
 import {Component, OnInit,} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {VerificationService} from "../../service/verification.service";
-import {BehaviorSubject, interval, Observable, ReplaySubject, Subject, take} from "rxjs";
-
-interface user {
-    username: string
-    password: string
-}
+import {find} from "rxjs";
 
 @Component({
     selector: 'app-authorization',
@@ -21,15 +16,6 @@ export class AuthorizationComponent implements OnInit {
     public authorizationForm!: FormGroup;
 
     constructor(private verificationService: VerificationService) {
-
-        const obs$ = new Subject();
-        obs$.next(1)
-        obs$.next(2)
-        obs$.next(3)
-        obs$.next(4)
-        obs$.next(5)
-        obs$.subscribe(val => console.log('Подписчик1',val))
-        obs$.subscribe(val => console.log('Подписчик2',val))
     }
 
     ngOnInit() {
@@ -44,6 +30,16 @@ export class AuthorizationComponent implements OnInit {
     }
 
     public submit() {
-        this.verificationService.checkAuthorization(this.authorizationForm);
+        for (let i = 0; i < localStorage.length; i++) {
+            // @ts-ignore
+            let email: string = localStorage.key(i);
+            // @ts-ignore
+            let password = JSON.parse(localStorage.getItem(email)).password
+            console.log(email == this.authorizationForm.value.login && password == this.authorizationForm.value.password)
+            if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
+                console.log('вход')
+            }
+        }
     }
+
 }
