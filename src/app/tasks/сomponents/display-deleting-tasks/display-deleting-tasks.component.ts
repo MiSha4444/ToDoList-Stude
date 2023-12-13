@@ -17,10 +17,12 @@ export class DisplayDeletingTasksComponent {
 
     cat: category[] | undefined
 
+    cats: any = []
+
     status: string[] = ['выполнено', 'просрочено', 'в работе'];
 
-    constructor(public messageService: MessageService, public confirmationService: ConfirmationService , public transServise:TransferringCategoryService) {
-        this.cat = this.transServise.cat
+    constructor(public messageService: MessageService, public confirmationService: ConfirmationService, public transServise: TransferringCategoryService) {
+        this.cat = this.transServise.transcat
     }
 
 
@@ -77,6 +79,10 @@ export class DisplayDeletingTasksComponent {
         this.task = {};
         this.submitted = false;
         this.taskDialog = true;
+        for (let i = 0; i < localStorage.length; i++) {
+            console.log(this.cats)
+            this.cats.push(localStorage.key(i));
+        }
     }
 
     saveProduct() {
