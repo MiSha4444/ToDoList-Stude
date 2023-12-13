@@ -24,18 +24,18 @@ export class AddingDeletingCategoriesComponent {
     category: any;
     public categories: category[] = [
         {name: 'домашние дела', id: '1', description: 'Уборк, Стирка, То что мама заставит сделать'},
-        {name: 'Работа', id: '1', description: 'Стажирока в лучшей компании мира!!!'},
-        {name: 'Альденте', id: '1',},
-        {name: 'учеба', id: '1', description: 'Надоела эта ваша шарага'},
+        {name: 'Работа', id: '2', description: 'Стажирока в лучшей компании мира!!!'},
+        {name: 'Альденте', id: '3',},
+        {name: 'учеба', id: '4', description: 'Надоела эта ваша шарага'},
     ]
 
     cols: any[] = [
         {field: 'name', header: 'Название категории',},
         {field: 'description', header: 'Описание категории',},
     ]
-    @Output() e: category[] = this.categories
 
-    constructor(public messageService: MessageService, public confirmationService: ConfirmationService) {
+    constructor(public messageService: MessageService, public confirmationService: ConfirmationService, private transServis: TransferringCategoryService) {
+        this.transServis.transcat = this.categories
     }
 
     hideDialog() {
@@ -55,11 +55,14 @@ export class AddingDeletingCategoriesComponent {
         if (this.category.name.trim()) {
             if (this.category.id) {
                 this.categories[this.findIndexById(this.category.id)] = this.category;
+                localStorage.setItem(this.category,this.category.id)
             } else {
                 this.category.id = this.createId();
                 this.categories.push(this.category);
+                localStorage.setItem(this.category.name,this.category.id)
             }
-
+            localStorage.setItem(this.category.name,this.category.id)
+            this.transServis.transcat = this.categories
             this.categories = [...this.categories];
             this.categoryDialog = false;
         }
