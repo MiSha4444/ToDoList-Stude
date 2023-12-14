@@ -22,7 +22,7 @@ export class DisplayDeletingTasksComponent {
     status: string[] = ['выполнено', 'просрочено', 'в работе'];
 
     constructor(public messageService: MessageService, public confirmationService: ConfirmationService, public transServise: TransferringCategoryService) {
-        this.cat = this.transServise.transcat
+
     }
 
 
@@ -87,7 +87,6 @@ export class DisplayDeletingTasksComponent {
 
     saveProduct() {
         this.submitted = true;
-
         if (this.task.name.trim()) {
             if (this.task.id) {
                 this.tasks[this.findIndexById(this.task.id)] = this.task;
@@ -95,7 +94,7 @@ export class DisplayDeletingTasksComponent {
                 this.task.id = this.createId();
                 this.tasks.push(this.task);
             }
-
+            this.transServise.GetUserTask(this.tasks)
             this.tasks = [...this.tasks];
             this.taskDialog = false;
         }
@@ -129,7 +128,6 @@ export class DisplayDeletingTasksComponent {
                 break;
             }
         }
-
         return index;
     }
 
