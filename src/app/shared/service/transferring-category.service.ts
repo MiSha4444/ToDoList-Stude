@@ -11,12 +11,19 @@ export class TransferringCategoryService {
         let login = localStorage.getItem('авторизован')
         // @ts-ignore
         let userData = JSON.parse(localStorage.getItem(login))
+        userData.tasks = []
         userData.tasks.push(tasks)
         // @ts-ignore
         localStorage.setItem(login, JSON.stringify(userData))
     }
 
-    getUserCategory(category: category[]) {
-
+    getUserCategory(categories: category[]) {
+        let login = localStorage.getItem('авторизован')
+        // @ts-ignore
+        let userData = JSON.parse(localStorage.getItem(login))
+        userData.categories = []
+        userData.categories.push(categories)
+        // @ts-ignore
+        localStorage.setItem(login, JSON.stringify(userData))
     }
 }
