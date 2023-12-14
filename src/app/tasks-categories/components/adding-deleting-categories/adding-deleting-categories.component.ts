@@ -35,7 +35,6 @@ export class AddingDeletingCategoriesComponent {
     ]
 
     constructor(public messageService: MessageService, public confirmationService: ConfirmationService, private transServis: TransferringCategoryService) {
-        this.transServis.transcat = this.categories
     }
 
     hideDialog() {
@@ -55,19 +54,19 @@ export class AddingDeletingCategoriesComponent {
         if (this.category.name.trim()) {
             if (this.category.id) {
                 this.categories[this.findIndexById(this.category.id)] = this.category;
-                localStorage.setItem(this.category,this.category.id)
+                localStorage.setItem(this.category, this.category.id)
             } else {
                 this.category.id = this.createId();
                 this.categories.push(this.category);
-                localStorage.setItem(this.category.name,this.category.id)
+                localStorage.setItem(this.category.name, this.category.id)
             }
-            localStorage.setItem(this.category.name,this.category.id)
-            this.transServis.transcat = this.categories
+            localStorage.setItem(this.category.name, this.category.id)
             this.categories = [...this.categories];
             this.categoryDialog = false;
         }
         this.categories = [...this.category];
         this.categoryDialog = false;
+        this.transServis.getUserCategory(this.categories)
         this.category = {};
     }
 
