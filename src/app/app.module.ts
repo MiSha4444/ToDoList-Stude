@@ -11,6 +11,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {MenubarModule} from "primeng/menubar";
+import {RippleModule} from "primeng/ripple";
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        MenubarModule,
+        RippleModule,
     ],
     providers: [MessageService, ConfirmationService],
     bootstrap: [AppComponent]
