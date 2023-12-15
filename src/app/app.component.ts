@@ -15,8 +15,8 @@ export class AppComponent {
                 label: 'Вход',
                 icon: 'pi pi-sign-in',
                 items: [
-                    {label: 'Авторизация', icon: 'pi pi-user', routerLink: 'Authorization', queryParams: 'r'},
-                    {label: 'Регистриция', icon: 'pi pi-user-plus', routerLink: 'Registration', queryParams: 'transitionTo'},
+                    {label: 'Авторизация', icon: 'pi pi-user', routerLink: 'Authorization'},
+                    {label: 'Регистриция', icon: 'pi pi-user-plus', routerLink: 'Registration'},
                     {label: 'Выход', icon: 'pi pi-user-minus', routerLink: 'Exit'},
                 ]
             },
@@ -24,8 +24,8 @@ export class AppComponent {
                 label: 'Задачи',
                 icon: 'pi pi-fw pi-pencil',
                 items: [
-                    {label: 'Задачи', icon: 'pi  pi-table', routerLink: '/TasksCategories'},
-                    {label: 'Категории', icon: 'pi  pi-list', routerLink: '/Tasks'},
+                    {label: 'Задачи', icon: 'pi  pi-table', routerLink: 'TasksCategories'},
+                    {label: 'Категории', icon: 'pi  pi-list', routerLink: 'Tasks'},
                 ]
             }
         ];
