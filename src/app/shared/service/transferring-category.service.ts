@@ -5,14 +5,12 @@ import {category, task} from "../interfaces";
     providedIn: 'root'
 })
 export class TransferringCategoryService {
-    private login: string | undefined;
 
     GetUserTask(tasks: task[]) {
         let login = localStorage.getItem('авторизован')
         // @ts-ignore
         let userData = JSON.parse(localStorage.getItem(login))
-        userData.tasks = []
-        userData.tasks.push(tasks)
+        userData.tasks = tasks
         // @ts-ignore
         localStorage.setItem(login, JSON.stringify(userData))
     }
@@ -21,8 +19,7 @@ export class TransferringCategoryService {
         let login = localStorage.getItem('авторизован')
         // @ts-ignore
         let userData = JSON.parse(localStorage.getItem(login))
-        userData.categories = []
-        userData.categories.push(categories)
+        userData.categories = categories
         // @ts-ignore
         localStorage.setItem(login, JSON.stringify(userData))
     }
