@@ -15,17 +15,17 @@ export class AppComponent {
                 label: 'Вход',
                 icon: 'pi pi-sign-in',
                 items: [
-                    {label: 'Авторизация', icon: 'pi pi-user', url: 'Authorization'},
-                    {label: 'Регистриция', icon: 'pi pi-user-plus', url: 'Registration',queryParams: 'transitionTo'},
-                    {label: 'Выход', icon: 'pi pi-user-minus', },
+                    {label: 'Авторизация', icon: 'pi pi-user', routerLink: 'Authorization', queryParams: 'r'},
+                    {label: 'Регистриция', icon: 'pi pi-user-plus', routerLink: 'Registration', queryParams: 'transitionTo'},
+                    {label: 'Выход', icon: 'pi pi-user-minus', routerLink: 'Exit'},
                 ]
             },
             {
                 label: 'Задачи',
                 icon: 'pi pi-fw pi-pencil',
                 items: [
-                    {label: 'Задачи', icon: 'pi  pi-table', url: '/TasksCategories'},
-                    {label: 'Категории', icon: 'pi  pi-list', url: '/Tasks'},
+                    {label: 'Задачи', icon: 'pi  pi-table', routerLink: '/TasksCategories'},
+                    {label: 'Категории', icon: 'pi  pi-list', routerLink: '/Tasks'},
                 ]
             }
         ];
