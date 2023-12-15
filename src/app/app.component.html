@@ -1,22 +1,22 @@
-
-<nav>
-  <h1>
-    <a href="#">Angular Routing</a>
-  </h1>
-  <ul>
+<p-menubar [model]="items" class="p-menubar">
+    <nav>
+        <h1>
+            <a href="#">Angular Routing</a>
+        </h1>
+        <ul>
+            <div>
+                <a routerLink="Authorization" pButton icon="pi pi-plus" class="p-button-success">Вход</a>
+                <a routerLink="Registration">Регистриция</a>
+                <a routerLink="Tasks">Задачи</a>
+                <a routerLink='TasksCategories'>Категории</a>
+            </div>
+        </ul>
+    </nav>
+</p-menubar>
+<div>
     <div>
-    <li ><a routerLink="Authorization" class="">Вход</a></li>
-    <li><a routerLink="Registration">Регистриция</a></li>
-    <li><a routerLink="Tasks">Задачи</a></li>
-    <li><a routerLink='TasksCategories'>Категории</a></li>
+        <router-outlet></router-outlet>
     </div>
-  </ul>
-</nav>
-
-<div >
-  <div>
-    <router-outlet></router-outlet>
-  </div>
 </div>
 
 
