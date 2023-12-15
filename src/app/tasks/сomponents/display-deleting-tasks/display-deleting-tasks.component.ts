@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 import {category, task} from "../../../shared/interfaces";
@@ -9,22 +9,13 @@ import {category, task} from "../../../shared/interfaces";
     styleUrls: ['./display-deleting-tasks.component.scss'],
     providers: [MessageService, ConfirmationService, TransferringCategoryService]
 })
-export class DisplayDeletingTasksComponent {
+export class DisplayDeletingTasksComponent implements OnInit {
 
     submitted: boolean = false;
 
     taskDialog: boolean = false;
 
-    cat: category[] | undefined
-
-    cats: any = []
-
     status: string[] = ['выполнено', 'просрочено', 'в работе'];
-
-    constructor(public messageService: MessageService, public confirmationService: ConfirmationService, public transServise: TransferringCategoryService) {
-
-    }
-
 
     cols: any[] = [
         {field: 'user', header: 'Исполнитель'},
@@ -34,41 +25,24 @@ export class DisplayDeletingTasksComponent {
         {field: 'category', header: 'Категория'},
     ]
 
-    public tasks: task[] = [
-        {status: 'выполнено', name: 'Помыть пол', user: 'Миша', date: '15.11.2023', category: 'уборка', id: 1},
-        {status: 'просрочено', name: 'Выключить утюг', user: 'Тест1', date: '29.11.2023', category: 'срочные дела', id: 2},
-        {status: 'в работе', name: 'Протереть пыли', user: 'Маша', date: '30.11.2023', category: 'уборка', id: 3},
-        {status: 'выполнено', name: 'Покормить рыбок', user: 'Папа', date: '3.12.2023', category: 'домашние дела', id: 4},
-        {
-            status: 'просрочено',
-            name: 'Оплатить квитанции',
-            user: 'Мама',
-            date: '23.11.2023',
-            category: 'срочные дела',
-            id: 5
-        },
-        {status: 'выполнено', name: 'пропылесосить', user: 'Робот пылесос', date: '4.12.2023', category: 'уборка', id: 6},
-        {status: 'просрочено', name: 'Помыть посуду', user: 'Тест2', date: '29.11.2023', category: 'домашние дела', id: 7},
-        {status: 'в работе', name: 'купить продуктов', user: 'Папа', date: '2.12.2023', category: 'домашние дела', id: 8},
-        {status: 'просрочено', name: 'Купить молоко', user: 'Мама', date: '2.12.2023', category: 'срочные дела', id: 9},
-        {
-            status: 'в работе',
-            name: 'Снять квартиру на новый год',
-            user: 'Маша',
-            date: '5.11.2023',
-            category: 'срочные дела', id: 10
-        },
-        {
-            status: 'выполнено',
-            name: 'Купить подарки на нг',
-            user: 'Мища',
-            date: '5.12.2023',
-            category: 'срочные дела',
-            id: 11
-        },
-    ]
+    public tasks: task[] = []
+
+    protected categories?: category[]
 
     task: any
+
+    cat: any
+
+    constructor(public messageService: MessageService, public confirmationService: ConfirmationService, public transServise: TransferringCategoryService) {
+
+    }
+
+    ngOnInit() {
+        // @ts-ignore
+        this.tasks = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).tasks
+        // @ts-ignore
+        this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).categories
+    }
 
     hideDialog() {
         this.taskDialog = false;
@@ -79,10 +53,6 @@ export class DisplayDeletingTasksComponent {
         this.task = {};
         this.submitted = false;
         this.taskDialog = true;
-        for (let i = 0; i < localStorage.length; i++) {
-            console.log(this.cats)
-            this.cats.push(localStorage.key(i));
-        }
     }
 
     saveProduct() {
@@ -144,4 +114,6 @@ export class DisplayDeletingTasksComponent {
 
         });
     }
+
+    protected readonly name = name;
 }
