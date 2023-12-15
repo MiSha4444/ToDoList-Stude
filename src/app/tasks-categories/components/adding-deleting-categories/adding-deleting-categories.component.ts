@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 
@@ -15,19 +15,15 @@ export interface category {
     providers: [TransferringCategoryService],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddingDeletingCategoriesComponent {
+export class AddingDeletingCategoriesComponent implements OnInit{
 
     submitted: boolean = false;
 
     categoryDialog: boolean = false;
 
     category: any;
-    public categories: category[] = [
-        {name: 'домашние дела', id: '1', description: 'Уборк, Стирка, То что мама заставит сделать'},
-        {name: 'Работа', id: '2', description: 'Стажирока в лучшей компании мира!!!'},
-        {name: 'Альденте', id: '3',},
-        {name: 'учеба', id: '4', description: 'Надоела эта ваша шарага'},
-    ]
+
+    public categories:any
 
     cols: any[] = [
         {field: 'name', header: 'Название категории',},
@@ -35,6 +31,11 @@ export class AddingDeletingCategoriesComponent {
     ]
 
     constructor(public messageService: MessageService, public confirmationService: ConfirmationService, private transServis: TransferringCategoryService) {
+    }
+
+    ngOnInit() {
+        // @ts-ignore
+        this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).categories
     }
 
     hideDialog() {
@@ -50,7 +51,6 @@ export class AddingDeletingCategoriesComponent {
 
     saveCategory() {
         this.submitted = true;
-
         if (this.category.name.trim()) {
             if (this.category.id) {
                 this.categories[this.findIndexById(this.category.id)] = this.category;
@@ -80,7 +80,7 @@ export class AddingDeletingCategoriesComponent {
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.categories = this.categories.filter(val => val.id !== category.id);
+                this.categories = this.categories.filter((val: { id: string; }) => val.id !== category.id);
                 this.category = {};
                 this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Category', life: 3000});
             }
