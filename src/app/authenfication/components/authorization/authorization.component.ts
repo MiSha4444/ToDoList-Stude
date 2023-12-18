@@ -1,13 +1,14 @@
 import {Component, OnInit,} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {VerificationService} from "../../service/verification.service";
-import {find} from "rxjs";
+import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-authorization',
     templateUrl: './authorization.component.html',
     styleUrls: ['./authorization.component.scss'],
-    providers: [VerificationService],
+    providers: [VerificationService, TransferringCategoryService],
 })
 
 export class AuthorizationComponent implements OnInit {
@@ -15,7 +16,7 @@ export class AuthorizationComponent implements OnInit {
 
     public authorizationForm!: FormGroup;
 
-    constructor(private verificationService: VerificationService) {
+    constructor(private verificationService: VerificationService, private router:Router) {
     }
 
     ngOnInit() {
@@ -33,12 +34,17 @@ export class AuthorizationComponent implements OnInit {
         for (let i = 0; i < localStorage.length; i++) {
             // @ts-ignore
             let email: string = localStorage.key(i);
-            // @ts-ignore
-            let password = JSON.parse(localStorage.getItem(email)).password
-            console.log(email == this.authorizationForm.value.login && password == this.authorizationForm.value.password)
-            if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
-                console.log('вход')
+            if (email != 'авторизован') {
+                // @ts-ignore
+                let password = JSON.parse(localStorage.getItem(email)).password
+                if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
+                    this.authorizationFlag = true
+                    localStorage.setItem('авторизован', email)
+                    this.router.navigate(['Tasks'])
+                    break
+                }
             }
+
         }
     }
 
