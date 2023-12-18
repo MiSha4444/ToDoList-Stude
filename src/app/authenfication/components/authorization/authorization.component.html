@@ -1,12 +1,19 @@
-<div class="p-card">
-  <form class="p-card-body" [formGroup]="authorizationForm" (ngSubmit)="submit()" >
-    <p>email<input type="email" id="login" name="login" formControlName="login">
-    <p>пароль<input type="password" id="password" name="password" formControlName="password">
+<div style="position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) ">
+  ОГРОМНЫМИ БУКВАМИ АВТОРИЗАЦИЯ
+  <form [formGroup]="authorizationForm" (ngSubmit)="submit()">
+    <p><input pInputText placeholder="Email..." class="p-inputted" type="email" id="login" name="login"
+              formControlName="login">
+    <p><input pInputText placeholder="Пароль..." class="p-password-input" type="password"
+              id="password" name="password" formControlName="password">
     <p>
-      <button type="submit">Войти</button>
+      <button pButton class="p-button" icon="pi pi-play"
+              style="background-color: darkslategray; border-color: darkslategray; width: 210px" type="submit">Войти
+      </button>
     </p>
   </form>
-
 </div>
-
-<br>Флаг авторизации {{authorizationFlag}}
+{{authorizationFlag}}
