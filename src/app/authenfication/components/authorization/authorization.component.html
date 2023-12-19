@@ -3,7 +3,7 @@
         left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%) ">
-  ОГРОМНЫМИ БУКВАМИ АВТОРИЗАЦИЯ
+  <a style="font-size: 38.5px">Авторзация</a>
   <form [formGroup]="authorizationForm" (ngSubmit)="submit()">
     <p><input pInputText placeholder="Email..." class="p-inputted" type="email" id="login" name="login"
               formControlName="login">
@@ -16,4 +16,3 @@
     </p>
   </form>
 </div>
-{{authorizationFlag}}

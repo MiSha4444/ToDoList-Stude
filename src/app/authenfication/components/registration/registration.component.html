@@ -1,8 +1,17 @@
-<form [formGroup]="registrationform" (ngSubmit)="submitRegistration()">
-  <p>Адрес элетронной почты<input type="email" formControlName="email">
-  <p>Имя<input type="text" formControlName="username">
-  <p>пароль<input type="password" formControlName="password">
-  <p>
-    <button type="submit">Зарегистрироваться</button>
-  </p>
-</form>
+<div style="position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) ">
+  <a style="font-size: 37px">Регистрация </a>
+  <form [formGroup]="registrationform" (ngSubmit)="submitRegistration()">
+    <p><input pInputText placeholder="Email" type="email" formControlName="email">
+    <p><input pInputText placeholder="Имя" type="text" formControlName="username">
+    <p><input pInputText placeholder="пароль" class="p-inputted" type="password" formControlName="password">
+    <p>
+      <button [disabled]="!registrationform.valid"
+              style="background-color: darkslategray; border-color: darkslategray;width: 210px" pButton class="p-button"
+              icon="pi pi-play" type="submit">Зарегистрироваться
+      </button>
+  </form>
+</div>
