@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 import {category, task} from "../../../shared/interfaces";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-display-deleting-tasks',
@@ -12,11 +13,16 @@ import {category, task} from "../../../shared/interfaces";
 
 export class DisplayDeletingTasksComponent implements OnInit {
 
-  submitted: boolean = false;
 
-  taskDialog: boolean = false;
+  public submitted$:BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  status: string[] = ['выполнено', 'просрочено', 'в работе'];
+  public taskDialog$: boolean = false
+
+  public status: string[] = ['выполнено', 'просрочено', 'в работе'];
+
+  public priority: string[] = ['Выскоий', 'Средний', 'Низкий']
+
+  currentDate = new Date();
 
   cols: any[] = [
     {field: 'user', header: 'Исполнитель'},
@@ -24,16 +30,18 @@ export class DisplayDeletingTasksComponent implements OnInit {
     {field: 'status', header: 'Статус'},
     {field: 'date', header: 'Дата'},
     {field: 'category', header: 'Категория'},
+    {field: 'priority', header: 'Приоритет задачи'}
   ];
 
   public tasks: task[] = [];
 
   protected categories?: category[];
 
-  task: any;
+  public task: any;
 
-  constructor(public messageService: MessageService, public confirmationService: ConfirmationService, public transServise: TransferringCategoryService) {
-
+  constructor(public messageService: MessageService,
+              public confirmationService: ConfirmationService,
+              public transServise: TransferringCategoryService,) {
   }
 
   ngOnInit() {
@@ -44,19 +52,19 @@ export class DisplayDeletingTasksComponent implements OnInit {
   }
 
   hideDialog() {
-    this.taskDialog = false;
-    this.submitted = false;
+    this.taskDialog$ = false;
+    this.submitted$.next(false);
   }
 
   openNew() {
     this.task = {};
-    this.submitted = false;
-    this.taskDialog = true;
+    this.submitted$.next(false);
+    this.taskDialog$ = true;
   }
 
   saveTask() {
-    this.submitted = true;
-    this.task.date = this.task.date.toLocaleString({day: '2-digit', month: '2-digit', year: '2-digit'})
+    this.submitted$.next(true);
+    this.task.date = this.task.date.toLocaleString({day: '2-digit', month: '2-digit', year: '2-digit'});
     if (this.task.name.trim()) {
       if (this.task.id) {
         this.tasks[this.findIndexById(this.task.id)] = this.task;
@@ -67,16 +75,16 @@ export class DisplayDeletingTasksComponent implements OnInit {
       }
       this.transServise.GetUserTask(this.tasks);
       this.tasks = [...this.tasks];
-      this.taskDialog = false;
+      this.taskDialog$ = false;
     }
     this.tasks = [...this.task];
-    this.taskDialog = false;
+    this.taskDialog$ = false;
     this.task = {};
   }
 
   editTask(task: task) {
     this.task = {...task};
-    this.taskDialog = true;
+    this.taskDialog$ = true;
   }
 
 
