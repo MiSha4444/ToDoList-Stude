@@ -5,6 +5,7 @@ export interface task {
     date: string
     category: string
     id: number | string
+    priority: string
 }
 
 export interface category {
