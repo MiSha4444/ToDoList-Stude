@@ -1,4 +1,4 @@
-<div class="card">
+<div class="p-card">
   <p-toolbar styleClass="p-mb-4">
     <ng-template pTemplate="left">
       <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
@@ -30,29 +30,33 @@
   </p-table>
 
   <!--Модальное окно -->
-<p-dialog [(visible)]="categoryDialog" [style]="{width: '450px'}" header="Создание категории" [modal]="true"
-          styleClass="p-fluid">
+  <p-dialog [(visible)]="categoryDialog" [style]="{width: '450px'}" header="Создание категории" [modal]="true"
+            styleClass="p-fluid">
 
-  <ng-template pTemplate="content">
-    <div class="p-field">
-      <small class="p-invalid" *ngIf="submitted && !category.name">Name is required.</small>
-    </div>
-    <div class="p-field">
-      <label for="user">название категории</label>
-      <input pInputText type="text" id="user" [(ngModel)]="category.name">
-    </div>
-    <div class="p-field">
-      <label for="description">Описание категории</label>
-      <textarea id="description" pInputTextarea [(ngModel)]="category.description" required rows="3"
-                cols="20"></textarea>
-    </div>
+    <ng-template pTemplate="content">
+      <div class="p-field">
+        <small class="p-invalid" *ngIf="submitted && !category.name">Заполните обязательные поля!</small>
+      </div>
+      <div class="p-field">
+        <label for="user">Название категории</label>
+        <input pInputText type="text" id="user" [(ngModel)]="category.name">
+      </div>
+      <div class="p-field">
+        <label for="description">Описание категории</label>
+        <textarea id="description" pInputTextarea [(ngModel)]="category.description" required rows="3"
+                  cols="20"></textarea>
+      </div>
 
 
-  </ng-template>
+    </ng-template>
 
-  <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCategory()"></button>
-  </ng-template>
-</p-dialog>
+    <ng-template pTemplate="footer">
+      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+      <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCategory()"></button>
+    </ng-template>
+  </p-dialog>
+</div>
+
+<div class="card flex justify-content-center gap-2">
+  <p-confirmDialog></p-confirmDialog>
 </div>
