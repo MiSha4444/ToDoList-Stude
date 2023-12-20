@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {EditingCreatingTasksComponent} from "./сomponents/editing-creating-tasks/editing-creating-tasks.component";
 import {DisplayDeletingTasksComponent} from "./сomponents/display-deleting-tasks/display-deleting-tasks.component";
 import {RouterModule} from "@angular/router";
 import {TableModule} from "primeng/table";
-import {DatePipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {ToolbarModule} from "primeng/toolbar";
 import {DialogModule} from "primeng/dialog";
 import {RadioButtonModule} from "primeng/radiobutton";
@@ -18,7 +18,6 @@ import {DropdownModule} from "primeng/dropdown";
 import {CalendarModule} from "primeng/calendar";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-
 
 
 @NgModule({
@@ -40,12 +39,11 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     ChipsModule,
     DataViewModule,
     DropdownModule,
-    JsonPipe,
     CalendarModule,
-    DatePipe,
     ConfirmDialogModule
   ],
-  exports:[RouterModule],
-  providers:[MessageService, ConfirmationService],
+  exports: [RouterModule],
+  providers: [MessageService, ConfirmationService],
 })
-export class TasksModule { }
+export class TasksModule {
+}
