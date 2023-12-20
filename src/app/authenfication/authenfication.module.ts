@@ -7,6 +7,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ChipsModule} from "primeng/chips";
 import {ButtonModule} from "primeng/button";
 import {ExitComponent} from "./components/exit/exit.component";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+
 
 
 @NgModule({
@@ -19,9 +22,11 @@ import {ExitComponent} from "./components/exit/exit.component";
     FormsModule,
     ReactiveFormsModule,
     ChipsModule,
-    ButtonModule
+    ButtonModule,
+    ConfirmDialogModule,
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[ConfirmationService,MessageService]
 
 })
 export class AuthenficationModule {
