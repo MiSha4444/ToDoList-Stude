@@ -5,47 +5,45 @@ import {TransferringCategoryService} from "../../../shared/service/transferring-
 import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-authorization',
-    templateUrl: './authorization.component.html',
-    styleUrls: ['./authorization.component.scss'],
-    providers: [VerificationService, TransferringCategoryService],
+  selector: 'app-authorization',
+  templateUrl: './authorization.component.html',
+  styleUrls: ['./authorization.component.scss'],
+  providers: [VerificationService, TransferringCategoryService],
 })
 
 export class AuthorizationComponent implements OnInit {
-    public authorizationFlag: boolean = this.verificationService.authorizationFlag;
 
-    public authorizationForm!: FormGroup;
+  public authorizationForm!: FormGroup;
 
-    constructor(private verificationService: VerificationService, private router:Router) {
-    }
+  constructor(private verificationService: VerificationService, private router: Router) {
+  }
 
-    ngOnInit() {
-        this.authorizationForm = new FormGroup({
-            login: new FormControl('', [
-                Validators.email,
-                Validators.required,
-            ]),
-            password: new FormControl('', [Validators.required])
+  ngOnInit() {
+    this.authorizationForm = new FormGroup({
+      login: new FormControl('', [
+        Validators.email,
+        Validators.required,
+      ]),
+      password: new FormControl('', [Validators.required])
 
-        })
-    }
+    })
+  }
 
-    public submit() {
-        for (let i = 0; i < localStorage.length; i++) {
-            // @ts-ignore
-            let email: string = localStorage.key(i);
-            if (email != 'авторизован') {
-                // @ts-ignore
-                let password = JSON.parse(localStorage.getItem(email)).password
-                if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
-                    this.authorizationFlag = true
-                    localStorage.setItem('авторизован', email)
-                    this.router.navigate(['Tasks'])
-                    break
-                }
-            }
-
+  public submit() {
+    for (let i = 0; i < localStorage.length; i++) {
+      // @ts-ignore
+      let email: string = localStorage.key(i);
+      if (email != 'авторизован') {
+        // @ts-ignore
+        let password = JSON.parse(localStorage.getItem(email)).password
+        if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
+          localStorage.setItem('авторизован', email)
+          this.router.navigate(['Tasks'])
+          break
         }
+      }
+
     }
+  }
 
 }
