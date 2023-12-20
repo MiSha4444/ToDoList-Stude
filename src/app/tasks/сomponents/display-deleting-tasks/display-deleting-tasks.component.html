@@ -30,7 +30,10 @@
     </ng-template>
   </p-table>
 
-  <p-dialog [(visible)]="taskDialog$" [style]="{width: '600px',height: '700px'}" header="Создание задачи"
+  <div class="card flex justify-content-center gap-2">
+    <p-confirmDialog></p-confirmDialog>
+  </div>
+  <p-dialog [(visible)]="taskDialog" [style]="{width: '600px',height: '700px'}" header="Создание задачи"
             [modal]="true"
             styleClass="p-fluid">
 

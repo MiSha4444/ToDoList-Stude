@@ -16,15 +16,15 @@ export class DisplayDeletingTasksComponent implements OnInit {
 
   public submitted$:BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-  public taskDialog$: boolean = false
+  public taskDialog: boolean = false;
 
   public status: string[] = ['выполнено', 'просрочено', 'в работе'];
 
-  public priority: string[] = ['Выскоий', 'Средний', 'Низкий']
+  public priority: string[] = ['Выскоий', 'Средний', 'Низкий'];
 
   currentDate = new Date();
 
-  cols: any[] = [
+  public cols: any[] = [
     {field: 'user', header: 'Исполнитель'},
     {field: 'name', header: 'Название задачи'},
     {field: 'status', header: 'Статус'},
@@ -52,14 +52,14 @@ export class DisplayDeletingTasksComponent implements OnInit {
   }
 
   hideDialog() {
-    this.taskDialog$ = false;
+    this.taskDialog = false;
     this.submitted$.next(false);
   }
 
   openNew() {
     this.task = {};
     this.submitted$.next(false);
-    this.taskDialog$ = true;
+    this.taskDialog = true;
   }
 
   saveTask() {
@@ -69,22 +69,21 @@ export class DisplayDeletingTasksComponent implements OnInit {
       if (this.task.id) {
         this.tasks[this.findIndexById(this.task.id)] = this.task;
       } else {
-
         this.task.id = this.createId();
         this.tasks.push(this.task);
       }
       this.transServise.GetUserTask(this.tasks);
       this.tasks = [...this.tasks];
-      this.taskDialog$ = false;
+      this.taskDialog = false;
     }
     this.tasks = [...this.task];
-    this.taskDialog$ = false;
+    this.taskDialog = false;
     this.task = {};
   }
 
   editTask(task: task) {
     this.task = {...task};
-    this.taskDialog$ = true;
+    this.taskDialog = true;
   }
 
 
@@ -115,7 +114,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.tasks = this.tasks.filter(val => val.id !== task.id);
-        this.task = {};
+        this.transServise.GetUserTask(this.tasks);
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Task Deleted', life: 3000});
       }
 
