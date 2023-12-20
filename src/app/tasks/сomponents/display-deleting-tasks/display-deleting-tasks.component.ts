@@ -109,7 +109,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
 
   deleteTask(task: task) {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + task.name + '?',
+      message: 'Вы правда хотите удалить задачу ' + task.name + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
