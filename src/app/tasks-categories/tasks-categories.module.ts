@@ -4,7 +4,7 @@ import {AddingDeletingCategoriesComponent} from "./components/adding-deleting-ca
 import {CreateEditcategoriesComponent} from "./components/create-editcategories/create-editcategories.component";
 import {RouterModule} from '@angular/router';
 import {FormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import {JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
@@ -25,22 +25,23 @@ import {InputTextareaModule} from "primeng/inputtextarea";
     AddingDeletingCategoriesComponent,
 
   ],
-  imports: [
-    FormsModule,
-    NgForOf,
-    CardModule,
-    ButtonModule,
-    RippleModule,
-    ToolbarModule,
-    StyleClassModule,
-    TableModule,
-    CalendarModule,
-    DialogModule,
-    DropdownModule,
-    InputTextModule,
-    InputTextareaModule,
-    NgIf
-  ],
+    imports: [
+        FormsModule,
+        NgForOf,
+        CardModule,
+        ButtonModule,
+        RippleModule,
+        ToolbarModule,
+        StyleClassModule,
+        TableModule,
+        CalendarModule,
+        DialogModule,
+        DropdownModule,
+        InputTextModule,
+        InputTextareaModule,
+        NgIf,
+        JsonPipe
+    ],
   exports:[RouterModule]
 })
 export class TasksCategoriesModule { }
