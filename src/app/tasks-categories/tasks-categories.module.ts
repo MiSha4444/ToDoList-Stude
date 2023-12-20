@@ -16,6 +16,7 @@ import {DialogModule} from "primeng/dialog";
 import {DropdownModule} from "primeng/dropdown";
 import {InputTextModule} from "primeng/inputtext";
 import {InputTextareaModule} from "primeng/inputtextarea";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 
 
@@ -25,23 +26,23 @@ import {InputTextareaModule} from "primeng/inputtextarea";
     AddingDeletingCategoriesComponent,
 
   ],
-    imports: [
-        FormsModule,
-        NgForOf,
-        CardModule,
-        ButtonModule,
-        RippleModule,
-        ToolbarModule,
-        StyleClassModule,
-        TableModule,
-        CalendarModule,
-        DialogModule,
-        DropdownModule,
-        InputTextModule,
-        InputTextareaModule,
-        NgIf,
-        JsonPipe
-    ],
+  imports: [
+    FormsModule,
+    NgForOf,
+    CardModule,
+    ButtonModule,
+    RippleModule,
+    ToolbarModule,
+    StyleClassModule,
+    TableModule,
+    CalendarModule,
+    DialogModule,
+    DropdownModule,
+    InputTextModule,
+    InputTextareaModule,
+    NgIf,
+    ConfirmDialogModule,
+  ],
   exports:[RouterModule]
 })
 export class TasksCategoriesModule { }
