@@ -30,7 +30,7 @@
     </ng-template>
   </p-table>
 
-  <p-dialog [(visible)]="taskDialog" [style]="{width: '600px',height: '700px'}" header="Создание задачи"
+  <p-dialog [formGroup]="taskForm" [(visible)]="taskDialog" [style]="{width: '600px',height: '700px'}" header="Создание задачи"
             [modal]="true"
             styleClass="p-fluid">
 
@@ -40,23 +40,23 @@
       </div>
       <div class="p-field">
         <label for="user">Имя исполнителя</label>
-        <input pInputText type="text" id="user" [(ngModel)]="task.user">
+        <input formControlName="user" pInputText type="text" id="user" [(ngModel)]="task.user">
       </div>
       <div class="p-field">
         <label for="name">Задача</label>
-        <textarea id="name" pInputTextarea [(ngModel)]="task.name" required rows="3"
+        <textarea formControlName = 'name' id="name" pInputTextarea [(ngModel)]="task.name" required rows="3"
                   cols="20"></textarea>
       </div>
       <div class="p-field">
         <label for="date">Дата</label>
-        <p-calendar [minDate]='currentDate' id="date" appendTo="body" dateFormat="dd.mm.yy" [showTime]="true"
+        <p-calendar formControlName="date" [minDate]='currentDate' id="date" appendTo="body" dateFormat="dd.mm.yy" [showTime]="true"
                     [(ngModel)]="task.date"></p-calendar>
       </div>
       <div class="p-field">
         <label class="p-mb-3">Category</label>
         <div class="p-form grid p-grid">
           <div class="p-dropdown ">
-            <p-dropdown appendTo="body" optionLabel="name" optionValue="name" name="category"
+            <p-dropdown formControlName="category" appendTo="body" optionLabel="name" optionValue="name" name="category"
                         [options]="categories"
                         [(ngModel)]="task.category"></p-dropdown>
           </div>
@@ -64,9 +64,9 @@
       </div>
       <div class="p-field">
         <label class="p-mb-3">Статус</label>
-        <div class="p-form grid p-grid">
-          <div class="p-dropdown ">
-            <p-dropdown appendTo="body" id="status" name="status" [options]="status"
+        <div class="p-form grid p-grid" >
+          <div class="p-dropdown" >
+            <p-dropdown formControlName="status" appendTo="body" id="status" name="status" [options]="status"
                         [(ngModel)]="task.status"></p-dropdown>
           </div>
         </div>
@@ -75,7 +75,7 @@
         <label class="p-mb-3">Приоритет задачи</label>
         <div class="p-form grid p-grid">
           <div class="p-dropdown ">
-            <p-dropdown appendTo="body" id="priority" name="priority" [options]="priority"
+            <p-dropdown formControlName = 'priority' appendTo="body" id="priority" name="priority" [options]="priority"
                         [(ngModel)]="task.priority"></p-dropdown>
           </div>
         </div>
