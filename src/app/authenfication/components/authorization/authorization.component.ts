@@ -29,7 +29,7 @@ export class AuthorizationComponent implements OnInit {
     })
   }
 
-  public submit() {
+  public chekcUser() {
     for (let i = 0; i < localStorage.length; i++) {
       // @ts-ignore
       let email: string = localStorage.key(i);
