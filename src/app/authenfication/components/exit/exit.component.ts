@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 export class ExitComponent implements OnInit {
   constructor(public confirmationService: ConfirmationService, public messageService: MessageService, private router: Router) {
   }
+
   ngOnInit() {
     this.confirmationService.confirm({
       message: 'Вы правда хотите выйти ?',
@@ -19,6 +20,9 @@ export class ExitComponent implements OnInit {
       accept: () => {
         localStorage.setItem('авторизован', '')
         this.router.navigate(['Authorization'])
+      },
+      reject: () => {
+        this.router.navigate(['Tasks'])
       }
     });
   }
