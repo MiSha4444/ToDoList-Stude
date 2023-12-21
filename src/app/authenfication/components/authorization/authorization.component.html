@@ -4,7 +4,7 @@
         margin-right: -50%;
         transform: translate(-50%, -50%) ">
   <a style="font-size: 38.5px">Авторзация</a>
-  <form [formGroup]="authorizationForm" (ngSubmit)="submit()">
+  <form [formGroup]="authorizationForm" (ngSubmit)="chekcUser()">
     <p><input pInputText placeholder="Email..." class="p-inputted" type="email" id="login" name="login"
               formControlName="login">
     <p><input pInputText placeholder="Пароль..." class="p-password-input" type="password"
