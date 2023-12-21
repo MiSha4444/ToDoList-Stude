@@ -3,6 +3,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 import {category, task} from "../../../shared/interfaces";
 import {BehaviorSubject} from "rxjs";
+import {FormBuilder, FormControl, FormGroup, isFormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-display-deleting-tasks',
@@ -14,7 +15,7 @@ import {BehaviorSubject} from "rxjs";
 export class DisplayDeletingTasksComponent implements OnInit {
 
 
-  public submitted$:BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public submitted$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public taskDialog: boolean = false;
 
@@ -38,10 +39,12 @@ export class DisplayDeletingTasksComponent implements OnInit {
   protected categories?: category[];
 
   public task: any;
+  taskForm: any;
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
-              public transServise: TransferringCategoryService,) {
+              public transServise: TransferringCategoryService,
+              private fb: FormBuilder,) {
   }
 
   ngOnInit() {
@@ -49,6 +52,16 @@ export class DisplayDeletingTasksComponent implements OnInit {
     this.tasks = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).tasks;
     // @ts-ignore
     this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).categories;
+    this.taskForm = this.fb.group<task>({
+        category: "",
+        date: "",
+        id: "",
+        name: "",
+        priority: "",
+        status: "",
+        user: ""
+      }
+    )
   }
 
   hideDialog() {
