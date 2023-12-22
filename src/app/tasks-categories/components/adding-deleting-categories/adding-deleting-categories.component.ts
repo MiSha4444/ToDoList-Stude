@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit,} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 import {BehaviorSubject} from "rxjs";
+import {FormBuilder} from "@angular/forms";
 
 export interface category {
   name: string
@@ -13,7 +14,7 @@ export interface category {
   selector: 'app-adding-deleting-categories',
   templateUrl: './adding-deleting-categories.component.html',
   styleUrls: ['./adding-deleting-categories.component.scss'],
-  providers: [TransferringCategoryService,MessageService, ConfirmationService,],
+  providers: [TransferringCategoryService, MessageService, ConfirmationService,],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddingDeletingCategoriesComponent implements OnInit {
@@ -30,14 +31,18 @@ export class AddingDeletingCategoriesComponent implements OnInit {
     {field: 'name', header: 'Название категории',},
     {field: 'description', header: 'Описание категории',},
   ]
+  private categoryForm: any
 
-  constructor(public messageService: MessageService, public confirmationService: ConfirmationService, private transServise: TransferringCategoryService) {
+  constructor(public messageService: MessageService,
+              public confirmationService: ConfirmationService,
+              private transServise: TransferringCategoryService,
+              private formBuilder: FormBuilder,) {
   }
 
   ngOnInit() {
     // @ts-ignore
-
     this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).categories
+    this.categoryForm = this.formBuilder.group<category>({description: "", id: "", name: ""})
   }
 
   hideDialog() {
