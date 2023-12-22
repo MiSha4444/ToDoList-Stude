@@ -54,12 +54,12 @@ export class DisplayDeletingTasksComponent implements OnInit {
     this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).categories;
     this.taskForm = this.fb.group<task>({
         category: "",
-        date: "",
-        id: "",
-        name: "",
-        priority: "",
-        status: "",
-        user: ""
+      date: "",
+      id: "",
+      name: "",
+      priority: "",
+      status: "",
+      user: ""
       }
     )
   }
@@ -77,7 +77,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
 
   saveTask() {
     this.submitted$.next(true);
-    this.task.date = this.task.date.toLocaleString({day: '2-digit', month: '2-digit', year: '2-digit'});
+    this.task.date =  this.task.date ? this.task.date.toLocaleString({day: '2-digit', month: '2-digit', year: '2-digit'}) : '';
     if (this.task.name.trim()) {
       if (this.task.id) {
         this.tasks[this.findIndexById(this.task.id)] = this.task;
@@ -123,7 +123,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
   deleteTask(task: task) {
     this.confirmationService.confirm({
       message: 'Вы правда хотите удалить задачу ' + task.name + '?',
-      header: 'Confirm',
+      header: 'Удаление задачи',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.tasks = this.tasks.filter(val => val.id !== task.id);
