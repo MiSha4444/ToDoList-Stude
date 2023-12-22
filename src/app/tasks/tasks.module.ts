@@ -8,7 +8,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {ToolbarModule} from "primeng/toolbar";
 import {DialogModule} from "primeng/dialog";
 import {RadioButtonModule} from "primeng/radiobutton";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RippleModule} from "primeng/ripple";
 import {ButtonModule} from "primeng/button";
 import {InputTextareaModule} from "primeng/inputtextarea";
@@ -40,7 +40,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     DataViewModule,
     DropdownModule,
     CalendarModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    ReactiveFormsModule
   ],
   exports: [RouterModule],
   providers: [MessageService, ConfirmationService],
