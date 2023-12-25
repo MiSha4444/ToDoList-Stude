@@ -30,7 +30,8 @@
   </p-table>
 
   <!--Модальное окно -->
-  <p-dialog [(visible)]="categoryDialog" [style]="{width: '450px'}" header="Создание категории" [modal]="true"
+  <p-dialog [formGroup]="categoryForm" [(visible)]="categoryDialog" [style]="{width: '450px'}"
+            header="Создание категории" [modal]="true"
             styleClass="p-fluid">
 
     <ng-template pTemplate="content">
@@ -39,11 +40,12 @@
       </div>
       <div class="p-field">
         <label for="user">Название категории</label>
-        <input pInputText type="text" id="user" [(ngModel)]="category.name">
+        <input formControlName="name" pInputText type="text" id="user" [(ngModel)]="category.name">
       </div>
       <div class="p-field">
         <label for="description">Описание категории</label>
-        <textarea id="description" pInputTextarea [(ngModel)]="category.description" required rows="3"
+        <textarea formControlName="description" id="description" pInputTextarea [(ngModel)]="category.description"
+                  required rows="3"
                   cols="20"></textarea>
       </div>
 
