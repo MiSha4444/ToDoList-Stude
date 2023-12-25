@@ -31,7 +31,7 @@ export class AddingDeletingCategoriesComponent implements OnInit {
     {field: 'name', header: 'Название категории',},
     {field: 'description', header: 'Описание категории',},
   ]
-  private categoryForm: any
+  public categoryForm: any
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
