@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {VerificationService} from "../../service/verification.service";
 import {Router} from "@angular/router";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +11,10 @@ import {Router} from "@angular/router";
   providers: [VerificationService]
 })
 export class RegistrationComponent implements OnInit {
+
   public registrationform!: FormGroup;
+
+  public registrationIvalid: boolean = false
 
   constructor(private verificationService: VerificationService, private router: Router) {
   }
@@ -27,10 +31,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   submitRegistration() {
+    if (localStorage.getItem(this.registrationform.value.email)) {
+      this.registrationIvalid = true
+      return
+    }
     let user = this.registrationform.value
-    // @ts-ignore
     let newUserData = {...user, tasks: [], categories: []}
-    console.log(this.registrationform.value)
     localStorage.setItem(this.registrationform.value.email, JSON.stringify(newUserData))
     this.router.navigate(['Authorization'])
   }
