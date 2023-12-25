@@ -15,7 +15,7 @@ export class ExitComponent implements OnInit {
   ngOnInit() {
     this.confirmationService.confirm({
       message: 'Вы правда хотите выйти ?',
-      header: 'Confirmation',
+      header: 'Выход',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         localStorage.setItem('авторизован', '')
