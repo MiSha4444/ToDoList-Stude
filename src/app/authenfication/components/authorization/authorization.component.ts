@@ -13,6 +13,8 @@ import {Router} from "@angular/router";
 
 export class AuthorizationComponent implements OnInit {
 
+  public authIvalid: boolean = false
+
   public authorizationForm!: FormGroup;
 
   constructor(private verificationService: VerificationService, private router: Router) {
@@ -30,17 +32,18 @@ export class AuthorizationComponent implements OnInit {
   }
 
   public chekcUser() {
+
     for (let i = 0; i < localStorage.length; i++) {
       // @ts-ignore
       let email: string = localStorage.key(i);
-      if (email != 'авторизован') {
-        // @ts-ignore
-        let password = JSON.parse(localStorage.getItem(email)).password
-        if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
-          localStorage.setItem('авторизован', email)
-          this.router.navigate(['Tasks'])
-          break
-        }
+      // @ts-ignore
+      let password = JSON.parse(localStorage.getItem(email)).password
+      if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
+        localStorage.setItem('авторизован', email)
+        this.router.navigate(['Tasks'])
+        break
+      } else {
+        this.authIvalid = true
       }
 
     }
