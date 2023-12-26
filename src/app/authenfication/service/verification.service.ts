@@ -4,7 +4,6 @@ import {FormGroup} from "@angular/forms";
 interface user {
     username: string
     password: string
-    date?: string
     city?: string
 }
 
@@ -31,7 +30,7 @@ export class VerificationService {
         if (authorizationForm.valid && authorizationForm.valid) {
             const checkUser = this.usersData
                 .find(users => users.username == authorizationForm.value.login) ?? '';
-            //console.log(checkUser.password)
+
             if (checkUser) {
                 const i = checkUser.password == authorizationForm.value.password ?
                     this.authorizationFlag = true : this.authorizationFlag = false;
@@ -39,10 +38,5 @@ export class VerificationService {
         }
     }
 
-    public userRegistration(registrationForm: FormGroup) {
-        this.usersData.push(registrationForm.value)
-        console.log(registrationForm.value)
-        console.log(this.usersData)
-    }
 
 }
