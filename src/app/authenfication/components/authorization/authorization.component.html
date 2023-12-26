@@ -4,6 +4,7 @@
         margin-right: -50%;
         transform: translate(-50%, -50%) ">
   <a style="font-size: 38.5px">Авторзация</a>
+  <small class="p-invalid" *ngIf="this.registrationIvalid">Неправильное имя пользователя или пароль</small>
   <form [formGroup]="authorizationForm" (ngSubmit)="chekcUser()">
     <p><input pInputText placeholder="Email..." class="p-inputted" type="email" id="login" name="login"
               formControlName="login">
