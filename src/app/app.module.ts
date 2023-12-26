@@ -16,25 +16,25 @@ import {RippleModule} from "primeng/ripple";
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-    ],
-    imports: [
-        RouterModule,
-        BrowserModule,
-        AppRoutingModule,
-        TasksCategoriesModule,
-        TasksModule,
-        AuthenficationModule,
-        FormsModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        ConfirmDialogModule,
-        MenubarModule,
-        RippleModule,
-    ],
-    providers: [MessageService, ConfirmationService],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    RouterModule,
+    BrowserModule,
+    AppRoutingModule,
+    TasksCategoriesModule,
+    TasksModule,
+    AuthenficationModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ConfirmDialogModule,
+    MenubarModule,
+    RippleModule,
+  ],
+  providers: [MessageService, ConfirmationService],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

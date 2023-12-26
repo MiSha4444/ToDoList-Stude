@@ -9,6 +9,7 @@ import {ButtonModule} from "primeng/button";
 import {ExitComponent} from "./components/exit/exit.component";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {NgIf} from "@angular/common";
 
 
 
@@ -24,6 +25,7 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
     ChipsModule,
     ButtonModule,
     ConfirmDialogModule,
+    NgIf,
   ],
   exports: [RouterModule],
   providers:[ConfirmationService,MessageService]
