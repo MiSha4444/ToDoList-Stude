@@ -58,6 +58,7 @@ export class AddingDeletingCategoriesComponent implements OnInit {
 
   saveCategory() {
     this.submitted.next(true);
+    this.category = this.categoryForm.value
     if (this.category.name.trim()) {
       if (this.category.id) {
         this.categories[this.findIndexById(this.category.id)] = this.category;
@@ -75,8 +76,12 @@ export class AddingDeletingCategoriesComponent implements OnInit {
   }
 
   editCategory(category: category) {
+    this.categoryForm.setValue({
+      name: category.name,
+      description: category.description,
+      id: category.id,
+    })
     this.category = {...category};
-    console.log(this.category = {...category})
     this.categoryDialog = true;
   }
 
