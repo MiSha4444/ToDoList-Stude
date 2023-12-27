@@ -36,21 +36,21 @@
 
     <ng-template pTemplate="content">
       <div class="p-field">
-        <small class="p-invalid" *ngIf="submitted$ && !task.name">Поля имя исполнителя и задача являются обязательными.</small>
+        <small class="p-invalid" *ngIf="submitted$ && !task.name">Поля имя и задача обязательны.</small>
       </div>
       <div class="p-field">
         <label for="user">Имя исполнителя</label>
-        <input formControlName="user" pInputText type="text" id="user" [(ngModel)]="task.user">
+        <input formControlName="user" pInputText type="text" id="user" >
       </div>
       <div class="p-field">
         <label for="name">Задача</label>
-        <textarea formControlName = 'name' id="name" pInputTextarea [(ngModel)]="task.name" required rows="3"
+        <textarea formControlName = 'name' id="name" pInputTextarea  required rows="3"
                   cols="20"></textarea>
       </div>
       <div class="p-field">
         <label for="date">Дата</label>
         <p-calendar formControlName="date" [minDate]='currentDate' id="date" appendTo="body" dateFormat="dd.mm.yy" [showTime]="true"
-                    [(ngModel)]="task.date"></p-calendar>
+                    ></p-calendar>
       </div>
       <div class="p-field">
         <label class="p-mb-3">Category</label>
@@ -58,7 +58,7 @@
           <div class="p-dropdown ">
             <p-dropdown formControlName="category" appendTo="body" optionLabel="name" optionValue="name" name="category"
                         [options]="categories"
-                        [(ngModel)]="task.category"></p-dropdown>
+                        ></p-dropdown>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
         <div class="p-form grid p-grid" >
           <div class="p-dropdown" >
             <p-dropdown formControlName="status" appendTo="body" id="status" name="status" [options]="status"
-                        [(ngModel)]="task.status"></p-dropdown>
+                        ></p-dropdown>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@
         <div class="p-form grid p-grid">
           <div class="p-dropdown ">
             <p-dropdown formControlName = 'priority' appendTo="body" id="priority" name="priority" [options]="priority"
-                        [(ngModel)]="task.priority"></p-dropdown>
+                        ></p-dropdown>
           </div>
         </div>
       </div>
