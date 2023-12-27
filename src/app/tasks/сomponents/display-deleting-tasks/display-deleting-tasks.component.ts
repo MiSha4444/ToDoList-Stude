@@ -15,7 +15,7 @@ import {FormBuilder, FormControl, FormGroup, isFormControl, Validators} from "@a
 export class DisplayDeletingTasksComponent implements OnInit {
 
 
-  public submitted$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public submitted$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   public taskDialog: boolean = false;
 
@@ -39,6 +39,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
   protected categories?: category[];
 
   public task: any;
+
   taskForm: any;
 
   constructor(public messageService: MessageService,
@@ -53,7 +54,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
     // @ts-ignore
     this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).categories;
     this.taskForm = this.fb.group<task>({
-        category: "",
+      category: "",
       date: "",
       id: "",
       name: "",
@@ -70,13 +71,15 @@ export class DisplayDeletingTasksComponent implements OnInit {
   }
 
   openNew() {
-    this.task = {};
+    this.taskForm.reset
+    this.task = {}
     this.submitted$.next(false);
     this.taskDialog = true;
   }
 
   saveTask() {
     this.submitted$.next(true);
+    this.task = this.taskForm.value
     this.task.date =  this.task.date ? this.task.date.toLocaleString({day: '2-digit', month: '2-digit', year: '2-digit'}) : '';
     if (this.task.name.trim()) {
       if (this.task.id) {
@@ -84,6 +87,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
       } else {
         this.task.id = this.createId();
         this.tasks.push(this.task);
+        console.log(this.task)
       }
       this.transServise.GetUserTask(this.tasks);
       this.tasks = [...this.tasks];
@@ -95,6 +99,15 @@ export class DisplayDeletingTasksComponent implements OnInit {
   }
 
   editTask(task: task) {
+    this.taskForm.setValue({
+      name: task.name,
+      category: task.category,
+      date: task.date,
+      id: task.id,
+      priority: task.priority,
+      status: task.status,
+      user: task.user,
+    })
     this.task = {...task};
     this.taskDialog = true;
   }
