@@ -20,7 +20,7 @@
           {{rowData[col.field]}}
         </td>
         <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success"
                   (click)="editCategory(category)"></button>
           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                   (click)="deleteCategory(category)"></button>
@@ -36,7 +36,7 @@
 
     <ng-template pTemplate="content">
       <div class="p-field">
-        <small class="p-invalid" *ngIf="submitted && !category.name">Заполните обязательные поля!</small>
+        <small class="p-invalid" *ngIf="submitted$ && !category.name">Заполните обязательные поля!</small>
       </div>
       <div class="p-field">
         <label for="user">Название категории</label>
