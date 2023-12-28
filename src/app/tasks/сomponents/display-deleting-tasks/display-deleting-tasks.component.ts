@@ -87,7 +87,6 @@ export class DisplayDeletingTasksComponent implements OnInit {
       } else {
         this.task.id = this.createId();
         this.tasks.push(this.task);
-        console.log(this.task)
       }
       this.transServise.GetUserTask(this.tasks);
       this.tasks = [...this.tasks];
