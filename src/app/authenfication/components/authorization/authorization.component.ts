@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {VerificationService} from "../../service/verification.service";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 import {Router} from "@angular/router";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-authorization',
@@ -13,11 +14,11 @@ import {Router} from "@angular/router";
 
 export class AuthorizationComponent implements OnInit {
 
-  public authIvalid: boolean = false
+  public $authIvalid: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
 
   public authorizationForm!: FormGroup;
 
-  constructor(private verificationService: VerificationService, private router: Router) {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -38,11 +39,11 @@ export class AuthorizationComponent implements OnInit {
       email = localStorage.getItem(email) ?? '';
       let password = JSON.parse(email).password;
       if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
-        localStorage.setItem('авторизован', email)
-        this.router.navigate(['Tasks'])
+        localStorage.setItem('авторизован', email);
+        this.router.navigate(['Tasks']);
         break
       } else {
-        this.authIvalid = true
+        this.$authIvalid.next(true);
       }
 
     }
