@@ -12,15 +12,15 @@ import {BehaviorSubject} from "rxjs";
 })
 export class RegistrationComponent implements OnInit {
 
-  public registrationform!: FormGroup;
+  public registrationForm!: FormGroup;
 
   public registrationIvalid: boolean = false
 
-  constructor(private verificationService: VerificationService, private router: Router) {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
-    this.registrationform = new FormGroup({
+    this.registrationForm = new FormGroup({
       email: new FormControl('', [
         Validators.email,
         Validators.required,
@@ -31,13 +31,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   submitRegistration() {
-    if (localStorage.getItem(this.registrationform.value.email)) {
+    if (localStorage.getItem(this.registrationForm.value.email)) {
       this.registrationIvalid = true
       return
     }
-    let user = this.registrationform.value
+    let user = this.registrationForm.value
     let newUserData = {...user, tasks: [], categories: []}
-    localStorage.setItem(this.registrationform.value.email, JSON.stringify(newUserData))
+    localStorage.setItem(this.registrationForm.value.email, JSON.stringify(newUserData))
     this.router.navigate(['Authorization'])
   }
 
