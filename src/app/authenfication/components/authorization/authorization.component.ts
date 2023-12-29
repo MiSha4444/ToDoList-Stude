@@ -34,10 +34,9 @@ export class AuthorizationComponent implements OnInit {
   public chekcUser() {
 
     for (let i = 0; i < localStorage.length; i++) {
-      // @ts-ignore
-      let email: string = localStorage.key(i);
-      // @ts-ignore
-      let password = JSON.parse(localStorage.getItem(email)).password
+      let email: string = localStorage.key(i) ?? '';
+      email = localStorage.getItem(email) ?? '';
+      let password = JSON.parse(email).password;
       if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
         localStorage.setItem('авторизован', email)
         this.router.navigate(['Tasks'])
