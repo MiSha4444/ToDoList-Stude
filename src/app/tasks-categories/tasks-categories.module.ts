@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import {AddingDeletingCategoriesComponent} from "./components/adding-deleting-categories/adding-deleting-categories.component";
-import {CreateEditcategoriesComponent} from "./components/create-editcategories/create-editcategories.component";
+
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {JsonPipe, NgForOf, NgIf} from "@angular/common";
@@ -22,7 +22,6 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 @NgModule({
   declarations:[
-    CreateEditcategoriesComponent,
     AddingDeletingCategoriesComponent,
 
   ],
