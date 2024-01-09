@@ -33,20 +33,21 @@ export class AuthorizationComponent implements OnInit {
   }
 
   public chekcUser() {
-
     for (let i = 0; i < localStorage.length; i++) {
-      let email: string = localStorage.key(i) ?? '';
-      email = localStorage.getItem(email) ?? '';
-      let password = JSON.parse(email).password;
-      if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
-        localStorage.setItem('авторизован', email);
-        this.router.navigate(['Tasks']);
-        break
-      } else {
-        this.$authIvalid.next(true);
+      if (localStorage.key(i) != 'авторизован') {
+        let email: string = localStorage.key(i) ?? '';
+        let login = localStorage.getItem(email) ?? '';
+        let password = JSON.parse(login).password;
+        if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
+          localStorage.setItem('авторизован', email);
+          this.router.navigate(['Tasks']);
+          break
+        } else {
+          this.$authIvalid.next(true);
+        }
       }
-
     }
   }
 
+  protected readonly Boolean = Boolean;
 }
