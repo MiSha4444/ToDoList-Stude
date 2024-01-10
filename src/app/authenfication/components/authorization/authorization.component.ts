@@ -14,7 +14,7 @@ import {BehaviorSubject} from "rxjs";
 
 export class AuthorizationComponent implements OnInit {
 
-  public $authIvalid: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+  public $authInvalid: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
 
   public authorizationForm!: FormGroup;
 
@@ -32,7 +32,7 @@ export class AuthorizationComponent implements OnInit {
     })
   }
 
-  public chekcUser() {
+  public checkUser() {
     for (let i = 0; i < localStorage.length; i++) {
       if (localStorage.key(i) != 'авторизован') {
         let email: string = localStorage.key(i) ?? '';
@@ -43,11 +43,10 @@ export class AuthorizationComponent implements OnInit {
           this.router.navigate(['Tasks']);
           break
         } else {
-          this.$authIvalid.next(true);
+          this.$authInvalid.next(true);
         }
       }
     }
   }
 
-  protected readonly Boolean = Boolean;
 }
