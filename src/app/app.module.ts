@@ -12,7 +12,6 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {MenubarModule} from "primeng/menubar";
-import {RippleModule} from "primeng/ripple";
 
 
 @NgModule({
@@ -31,7 +30,7 @@ import {RippleModule} from "primeng/ripple";
     BrowserAnimationsModule,
     ConfirmDialogModule,
     MenubarModule,
-    RippleModule,
+
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
