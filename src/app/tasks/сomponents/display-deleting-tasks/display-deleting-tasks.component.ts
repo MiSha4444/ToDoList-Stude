@@ -15,7 +15,7 @@ import {FormBuilder, FormControl, FormGroup, isFormControl, Validators} from "@a
 export class DisplayDeletingTasksComponent implements OnInit {
 
 
-  public submitted$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  public $submitted: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   public taskDialog: boolean = false;
 
@@ -49,38 +49,40 @@ export class DisplayDeletingTasksComponent implements OnInit {
   }
 
   ngOnInit() {
-    // @ts-ignore
-    this.tasks = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).tasks;
-    // @ts-ignore
-    this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).categories;
+    this.tasks = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').tasks;
+    this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
     this.taskForm = this.fb.group<task>({
-      category: "",
-      date: "",
-      id: "",
-      name: "",
-      priority: "",
-      status: "",
-      user: ""
+        category: "",
+        date: "",
+        id: "",
+        name: "",
+        priority: "",
+        status: "",
+        user: ""
       }
     )
   }
 
   hideDialog() {
     this.taskDialog = false;
-    this.submitted$.next(false);
+    this.$submitted.next(false);
   }
 
   openNew() {
-    this.taskForm.reset
+    this.taskForm.reset()
     this.task = {}
-    this.submitted$.next(false);
+    this.$submitted.next(false);
     this.taskDialog = true;
   }
 
   saveTask() {
-    this.submitted$.next(true);
+    this.$submitted.next(true);
     this.task = this.taskForm.value
-    this.task.date =  this.task.date ? this.task.date.toLocaleString({day: '2-digit', month: '2-digit', year: '2-digit'}) : '';
+    this.task.date = this.task.date ? this.task.date.toLocaleString({
+      day: '2-digit',
+      month: '2-digit',
+      year: '2-digit'
+    }) : '';
     if (this.task.name.trim()) {
       if (this.task.id) {
         this.tasks[this.findIndexById(this.task.id)] = this.task;

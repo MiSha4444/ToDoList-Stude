@@ -40,8 +40,7 @@ export class AddingDeletingCategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    // @ts-ignore
-    this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован'))).categories
+    this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories
     this.categoryForm = this.formBuilder.group<category>({description: "", id: "", name: ""})
   }
 
@@ -51,7 +50,7 @@ export class AddingDeletingCategoriesComponent implements OnInit {
   }
 
   OpenNew() {
-    this.categoryForm.reset
+    this.categoryForm.reset()
     this.category = {};
     this.$submitted.next(false);
     this.categoryDialog = true;
@@ -98,7 +97,6 @@ export class AddingDeletingCategoriesComponent implements OnInit {
       }
 
     });
-    console.log('dad222')
   }
 
   findIndexById(id: string): number {
@@ -109,7 +107,6 @@ export class AddingDeletingCategoriesComponent implements OnInit {
         break;
       }
     }
-
     return index;
   }
 
@@ -119,7 +116,6 @@ export class AddingDeletingCategoriesComponent implements OnInit {
     for (var i = 0; i < 5; i++) {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-    console.log(id)
     return id;
   }
 }
