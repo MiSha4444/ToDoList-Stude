@@ -37,7 +37,7 @@
 
     <ng-template pTemplate="content">
       <div class="p-field">
-        <small class="p-invalid" *ngIf="submitted$ && !task.name">Поля имя и задача обязательны.</small>
+        <small class="p-invalid" *ngIf="$submitted && !task.name">Поля имя и задача обязательны.</small>
       </div>
       <div class="p-field">
         <label for="user">Имя исполнителя</label>
