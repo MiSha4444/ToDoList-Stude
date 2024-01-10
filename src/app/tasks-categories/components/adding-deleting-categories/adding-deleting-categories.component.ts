@@ -19,7 +19,7 @@ export interface category {
 })
 export class AddingDeletingCategoriesComponent implements OnInit {
 
-  public submitted$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+  public $submitted: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
 
   public categoryDialog: boolean = false;
 
@@ -47,18 +47,18 @@ export class AddingDeletingCategoriesComponent implements OnInit {
 
   hideDialog() {
     this.categoryDialog = false;
-    this.submitted$.next(false);
+    this.$submitted.next(false);
   }
 
   OpenNew() {
     this.categoryForm.reset
     this.category = {};
-    this.submitted$.next(false);
+    this.$submitted.next(false);
     this.categoryDialog = true;
   }
 
   saveCategory() {
-    this.submitted$.next(true);
+    this.$submitted.next(true);
     this.category = this.categoryForm.value
     if (this.category.name.trim()) {
       if (this.category.id) {

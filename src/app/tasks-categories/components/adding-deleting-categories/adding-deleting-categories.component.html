@@ -36,7 +36,7 @@
 
     <ng-template pTemplate="content">
       <div class="p-field">
-        <small class="p-invalid" *ngIf="submitted$ && !category.name">Заполните обязательные поля!</small>
+        <small class="p-invalid" *ngIf="$submitted && !category.name">Заполните обязательные поля!</small>
       </div>
       <div class="p-field">
         <label for="user">Название категории</label>
