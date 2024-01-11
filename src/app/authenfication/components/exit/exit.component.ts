@@ -18,11 +18,11 @@ export class ExitComponent implements OnInit {
       header: 'Выход',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        localStorage.setItem('авторизован', '')
-        this.router.navigate(['Authorization'])
+        localStorage.setItem('авторизован', '');
+        this.router.navigate(['Authorization']);
       },
       reject: () => {
-        this.router.navigate(['Tasks'])
+        this.router.navigate(['Tasks']);
       }
     });
   }

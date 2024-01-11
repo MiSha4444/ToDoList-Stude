@@ -32,13 +32,13 @@ export class RegistrationComponent implements OnInit {
 
   submitRegistration() {
     if (localStorage.getItem(this.registrationForm.value.email)) {
-      this.registrationIvalid = true
-      return
+      this.registrationIvalid = true;
+      return;
     }
-    let user = this.registrationForm.value
-    let newUserData = {...user, tasks: [], categories: []}
-    localStorage.setItem(this.registrationForm.value.email, JSON.stringify(newUserData))
-    this.router.navigate(['Authorization'])
+    let user = this.registrationForm.value;
+    let newUserData = {...user, tasks: [], categories: []};
+    localStorage.setItem(this.registrationForm.value.email, JSON.stringify(newUserData));
+    this.router.navigate(['Authorization']);
   }
 
 }
