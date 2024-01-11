@@ -8,24 +8,22 @@ export class TransferringCategoryService {
 
   GetUserTask(tasks: task[]) {
     let login = localStorage.getItem('авторизован') ?? '';
-    login = localStorage.getItem(login) ?? '';
-    let userData = JSON.parse(login);
+    let userData = JSON.parse(localStorage.getItem(login) ?? '');
     userData.tasks = tasks;
-    localStorage.setItem(login, JSON.stringify(userData))
+    localStorage.setItem(login, JSON.stringify(userData));
   }
 
   getUserCategory(categories: category[]) {
     let login = localStorage.getItem('авторизован') ?? '';
-    login = localStorage.getItem(login) ?? '';
-    let userData = JSON.parse(login)
-    userData.categories = categories
-    localStorage.setItem(login, JSON.stringify(userData))
+    let userData = JSON.parse(localStorage.getItem(login) ?? '');
+    userData.categories = categories;
+    localStorage.setItem(login, JSON.stringify(userData));
   }
 
   deleteTask(task: task) {
     let login = localStorage.getItem('авторизован') ?? ''
     login = localStorage.getItem(login) ?? '';
-    let userData = JSON.parse(login)
-    userData.tasks
+    let userData = JSON.parse(login);
+    userData.tasks;
   }
 }
