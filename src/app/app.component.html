@@ -1,4 +1,7 @@
-<p-menubar [model]="items" class="p-menubar" >
+<p-menubar [model]="items" class="p-menubar">
+  <ng-template pTemplate="end" >
+    <a>{{localStorage.getItem('авторизован')}}</a>
+  </ng-template>
 </p-menubar>
 <div>
     <div>
