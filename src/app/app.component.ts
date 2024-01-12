@@ -6,8 +6,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ToDoList-stude';
-  items: any
+  public items: any;
 
   ngOnInit() {
     this.items = [
