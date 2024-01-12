@@ -5,7 +5,7 @@
         transform: translate(-50%, -50%) ">
   <a style="font-size: 37px">Регистрация </a>
   <form [formGroup]="registrationForm" (ngSubmit)="submitRegistration()">
-    <small class="p-invalid" *ngIf="this.registrationIvalid">Адресс электроной почты уже используется.</small>
+    <small class="p-invalid" *ngIf="this.registrationInvalid">Адресс электроной почты уже используется.</small>
     <p><input pInputText placeholder="Email" type="email" formControlName="email"></p>
     <p><input pInputText placeholder="Имя" type="text" formControlName="username"></p>
     <p><input pInputText placeholder="пароль" class="p-inputted" type="password" formControlName="password"></p>

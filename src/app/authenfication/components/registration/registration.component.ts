@@ -14,7 +14,7 @@ export class RegistrationComponent implements OnInit {
 
   public registrationForm!: FormGroup;
 
-  public registrationIvalid: boolean = false
+  public registrationInvalid: boolean = false
 
   constructor(private router: Router) {
   }
@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
 
   submitRegistration() {
     if (localStorage.getItem(this.registrationForm.value.email)) {
-      this.registrationIvalid = true;
+      this.registrationInvalid = true;
       return;
     }
     let user = this.registrationForm.value;
