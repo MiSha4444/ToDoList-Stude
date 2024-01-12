@@ -14,7 +14,6 @@ import {FormBuilder, FormControl, FormGroup, isFormControl, Validators} from "@a
 
 export class DisplayDeletingTasksComponent implements OnInit {
 
-
   public $submitted: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   public taskDialog: boolean = false;
@@ -23,7 +22,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
 
   public priority: string[] = ['Выскоий', 'Средний', 'Низкий'];
 
-  currentDate = new Date();
+  public currentDate:Date = new Date();
 
   public cols: any[] = [
     {field: 'user', header: 'Исполнитель'},
@@ -40,7 +39,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
 
   public task: any;
 
-  taskForm: any;
+  public taskForm: any;
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
@@ -116,8 +115,8 @@ export class DisplayDeletingTasksComponent implements OnInit {
 
   createId(): string {
     let id = '';
-    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (var i = 0; i < 5; i++) {
+    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < 5; i++) {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return id;
