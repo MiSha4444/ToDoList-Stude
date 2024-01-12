@@ -8,6 +8,8 @@ import {Component} from '@angular/core';
 export class AppComponent {
   public items: any;
 
+  public authorizationUser: string = localStorage.getItem('авторизован') ?? ''
+
   ngOnInit() {
     this.items = [
       {
