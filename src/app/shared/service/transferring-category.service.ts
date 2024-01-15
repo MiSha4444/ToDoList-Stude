@@ -19,11 +19,4 @@ export class TransferringCategoryService {
     userData.categories = categories;
     localStorage.setItem(login, JSON.stringify(userData));
   }
-
-  deleteTask(task: task) {
-    let login = localStorage.getItem('авторизован') ?? ''
-    login = localStorage.getItem(login) ?? '';
-    let userData = JSON.parse(login);
-    userData.tasks;
-  }
 }
