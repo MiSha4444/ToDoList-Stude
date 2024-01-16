@@ -1,8 +1,10 @@
+import {Cols} from "../../shared/interfaces";
+
 export const TASK_STATUS: string[] = ['выполнено', 'просрочено', 'в работе'];
 
 export const TASK_PRIORITY: string[] = ['Выскоий', 'Средний', 'Низкий'];
 
-export const TASK_COLS: any[] = [
+export const TASK_COLS: Cols[] = [
   {field: 'user', header: 'Исполнитель'},
   {field: 'name', header: 'Название задачи'},
   {field: 'status', header: 'Статус'},
