@@ -1,9 +1,5 @@
-<div style="position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%) ">
-  <a style="font-size: 38.5px">Авторзация</a>
+<div class="center">
+  <a class="font">Авторзация</a>
    <p><small class="p-invalid" *ngIf="this.$authInvalid.value">Неправильный email пользователя или пароль</small></p>
   <form [formGroup]="authorizationForm" (ngSubmit)="checkUser()">
     <p><input pInputText placeholder="Email..." class="p-inputted" type="email" id="login" name="login"
@@ -11,8 +7,7 @@
     <p><input pInputText placeholder="Пароль..." class="p-password-input" type="password"
               id="password" name="password" formControlName="password">
     <p>
-      <button pButton class="p-button" icon="pi pi-play"
-              style="background-color: darkslategray; border-color: darkslategray; width: 210px" type="submit">Войти
+      <button pButton class="p-button buttonColour" icon="pi pi-play" type="submit">Войти
       </button>
     </p>
   </form>
