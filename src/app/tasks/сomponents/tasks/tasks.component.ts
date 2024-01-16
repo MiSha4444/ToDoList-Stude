@@ -1,65 +1,53 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
-import {category, task} from "../../../shared/interfaces";
+import {Category, Task} from "../../../shared/interfaces";
 import {BehaviorSubject} from "rxjs";
-import {FormBuilder, FormControl, FormGroup, isFormControl, Validators} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
+import {TASK_COLS, TASK_PRIORITY, TASK_STATUS} from "../../const/const";
 
 @Component({
-  selector: 'app-display-deleting-tasks',
-  templateUrl: './display-deleting-tasks.component.html',
-  styleUrls: ['./display-deleting-tasks.component.scss'],
+  selector: 'app-tasks',
+  templateUrl: './tasks.component.html',
+  styleUrls: ['./tasks.component.scss'],
   providers: [MessageService, ConfirmationService, TransferringCategoryService]
 })
 
-export class DisplayDeletingTasksComponent implements OnInit {
+export class TasksComponent {
 
   public $submitted: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   public taskDialog: boolean = false;
 
-  public status: string[] = ['выполнено', 'просрочено', 'в работе'];
+  public status: string[] = TASK_STATUS;
 
-  public priority: string[] = ['Выскоий', 'Средний', 'Низкий'];
+  public priority: string[] = TASK_PRIORITY;
 
-  public currentDate:Date = new Date();
+  public currentDate: Date = new Date();
 
-  public cols: any[] = [
-    {field: 'user', header: 'Исполнитель'},
-    {field: 'name', header: 'Название задачи'},
-    {field: 'status', header: 'Статус'},
-    {field: 'date', header: 'Дата'},
-    {field: 'category', header: 'Категория'},
-    {field: 'priority', header: 'Приоритет задачи'}
-  ];
+  public cols: any[] = TASK_COLS;
 
-  public tasks: task[] = [];
+  public tasks: Task[] = [];
 
-  protected categories?: category[];
+  public categories: Category[] = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
 
-  public task: any;
+  public task: any = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').tasks;
 
-  public taskForm: any;
+  public taskForm: any = this.fb.group<Task>({
+      category: "",
+      date: "",
+      id: "",
+      name: "",
+      priority: "",
+      status: "",
+      user: ""
+    }
+  );
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
-              public transServise: TransferringCategoryService,
-              private fb: FormBuilder,) {
-  }
-
-  ngOnInit() {
-    this.tasks = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').tasks;
-    this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
-    this.taskForm = this.fb.group<task>({
-        category: "",
-        date: "",
-        id: "",
-        name: "",
-        priority: "",
-        status: "",
-        user: ""
-      }
-    )
+              public transService: TransferringCategoryService,
+              private fb: FormBuilder) {
   }
 
   hideDialog() {
@@ -89,7 +77,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
         this.task.id = this.createId();
         this.tasks.push(this.task);
       }
-      this.transServise.GetUserTask(this.tasks);
+      this.transService.GetUserTask(this.tasks);
       this.tasks = [...this.tasks];
       this.taskDialog = false;
     }
@@ -98,7 +86,7 @@ export class DisplayDeletingTasksComponent implements OnInit {
     this.task = {};
   }
 
-  editTask(task: task) {
+  editTask(task: Task) {
     this.taskForm.setValue({
       name: task.name,
       category: task.category,
@@ -133,14 +121,14 @@ export class DisplayDeletingTasksComponent implements OnInit {
     return index;
   }
 
-  deleteTask(task: task) {
+  deleteTask(task: Task) {
     this.confirmationService.confirm({
       message: 'Вы правда хотите удалить задачу ' + task.name + '?',
       header: 'Удаление задачи',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.tasks = this.tasks.filter(val => val.id !== task.id);
-        this.transServise.GetUserTask(this.tasks);
+        this.transService.GetUserTask(this.tasks);
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Task Deleted', life: 3000});
       }
 

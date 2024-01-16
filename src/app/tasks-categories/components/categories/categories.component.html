@@ -1,7 +1,7 @@
 <div class="p-card">
   <p-toolbar styleClass="p-mb-4">
     <ng-template pTemplate="left">
-      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+      <button pButton pRipple label="Добавить категорию" icon="pi pi-plus" class="p-button-success p-mr-2"
               (click)="OpenNew()"></button>
     </ng-template>
   </p-toolbar>
@@ -12,19 +12,23 @@
           {{col.header}}
           <p-sortIcon [field]='col.field'></p-sortIcon>
         </th>
+        <th>
+          <p></p> <!--table-header для технической колонки с кнопками-->
+        </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns" let-category>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-Category>
       <tr>
         <td *ngFor="let col of columns">
           {{rowData[col.field]}}
         </td>
         <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success"
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success table-button"
                   (click)="editCategory(category)"></button>
           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                   (click)="deleteCategory(category)"></button>
         </td>
+
       </tr>
     </ng-template>
   </p-table>
@@ -40,7 +44,7 @@
       </div>
       <div class="p-field">
         <label for="user">Название категории</label>
-        <input formControlName="name" pInputText type="text" id="user" >
+        <input formControlName="name" pInputText type="text" id="user">
       </div>
       <div class="p-field">
         <label for="description">Описание категории</label>
@@ -54,7 +58,8 @@
 
     <ng-template pTemplate="footer">
       <button pButton pRipple label="Выйти" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-      <button pButton pRipple label="Сохранить" icon="pi pi-check" class="p-button-text" (click)="saveCategory()"></button>
+      <button pButton pRipple label="Сохранить" icon="pi pi-check" class="p-button-text"
+              (click)="saveCategory()"></button>
     </ng-template>
   </p-dialog>
 </div>

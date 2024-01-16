@@ -3,19 +3,19 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthorizationComponent} from "./authenfication/components/authorization/authorization.component";
 import {RegistrationComponent} from "./authenfication/components/registration/registration.component";
 import {
-  DisplayDeletingTasksComponent
-} from "./tasks/сomponents/display-deleting-tasks/display-deleting-tasks.component";
+  TasksComponent
+} from "./tasks/сomponents/./tasks/tasks.component";
 import {
-  AddingDeletingCategoriesComponent
-} from "./tasks-categories/components/adding-deleting-categories/adding-deleting-categories.component";
+  CategoriesComponent
+} from "./tasks-categories/components/categories/categories.component";
 import {gurdsGuard} from "./gurds.guard";
 import {ExitComponent} from "./authenfication/components/exit/exit.component";
 
 const routes: Routes = [
   {path: 'Authorization', component: AuthorizationComponent},
   {path: 'Registration', component: RegistrationComponent},
-  {path: 'Tasks', component: DisplayDeletingTasksComponent, canActivate: [gurdsGuard]},
-  {path: 'TasksCategories', component: AddingDeletingCategoriesComponent, canActivate: [gurdsGuard]},
+  {path: 'Tasks', component: TasksComponent, canActivate: [gurdsGuard]},
+  {path: 'TasksCategories', component: CategoriesComponent, canActivate: [gurdsGuard]},
   {path: 'Exit', component: ExitComponent, canActivate: [gurdsGuard]}
 ];
 

@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {TasksCategoriesModule} from "./tasks-categories/tasks-categories.module";
 import {TasksModule} from "./tasks/tasks.module";
-import {AuthenficationModule} from "./authenfication/authenfication.module";
+import {AuthenticationModule} from "./authenfication/authentication.module";
 import {RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -24,7 +24,7 @@ import {MenubarModule} from "primeng/menubar";
     AppRoutingModule,
     TasksCategoriesModule,
     TasksModule,
-    AuthenficationModule,
+    AuthenticationModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

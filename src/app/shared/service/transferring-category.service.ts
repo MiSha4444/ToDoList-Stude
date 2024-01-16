@@ -1,19 +1,15 @@
-import {Injectable, Input, Output} from '@angular/core';
-import {category, task} from "../interfaces";
+import {Category, Task} from "../interfaces";
 
-@Injectable({
-  providedIn: 'root'
-})
 export class TransferringCategoryService {
 
-  GetUserTask(tasks: task[]) {
+  GetUserTask(tasks: Task[]) {
     let login = localStorage.getItem('авторизован') ?? '';
     let userData = JSON.parse(localStorage.getItem(login) ?? '');
     userData.tasks = tasks;
     localStorage.setItem(login, JSON.stringify(userData));
   }
 
-  getUserCategory(categories: category[]) {
+  getUserCategory(categories: Category[]) {
     let login = localStorage.getItem('авторизован') ?? '';
     let userData = JSON.parse(localStorage.getItem(login) ?? '');
     userData.categories = categories;

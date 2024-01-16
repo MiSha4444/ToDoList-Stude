@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 
-import {DisplayDeletingTasksComponent} from "./сomponents/display-deleting-tasks/display-deleting-tasks.component";
+import {TasksComponent} from "./сomponents/tasks/tasks.component";
 import {RouterModule} from "@angular/router";
 import {TableModule} from "primeng/table";
 import {NgForOf, NgIf} from "@angular/common";
@@ -21,7 +21,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
-    DisplayDeletingTasksComponent,
+    TasksComponent,
   ],
   imports: [
     TableModule,

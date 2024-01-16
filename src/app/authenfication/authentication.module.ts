@@ -12,7 +12,6 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {NgIf} from "@angular/common";
 
 
-
 @NgModule({
   declarations: [
     RegistrationComponent,
@@ -25,11 +24,11 @@ import {NgIf} from "@angular/common";
     ChipsModule,
     ButtonModule,
     ConfirmDialogModule,
-    NgIf,
+    NgIf
   ],
   exports: [RouterModule],
-  providers:[ConfirmationService,MessageService]
+  providers: [ConfirmationService, MessageService]
 
 })
-export class AuthenficationModule {
+export class AuthenticationModule {
 }

@@ -1,5 +1,9 @@
-
-export interface task {
+export interface MenuBarHeader {
+  label: string,
+  icon: string,
+  items: { label: string, icon: string, routerLink: string }[]
+}
+export interface Task {
   status: string
   name: string
   user: string
@@ -9,7 +13,7 @@ export interface task {
   priority: string
 }
 
-export interface category {
+export interface Category {
   name: string
   id: string
   description?: string

@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import {AddingDeletingCategoriesComponent} from "./components/adding-deleting-categories/adding-deleting-categories.component";
+import {CategoriesComponent} from "./components/categories/categories.component";
 
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {JsonPipe, NgForOf, NgIf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {CardModule} from "primeng/card";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
@@ -19,30 +19,29 @@ import {InputTextareaModule} from "primeng/inputtextarea";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 
-
 @NgModule({
-  declarations:[
-    AddingDeletingCategoriesComponent,
-
+  declarations: [
+    CategoriesComponent
   ],
-    imports: [
-        FormsModule,
-        NgForOf,
-        CardModule,
-        ButtonModule,
-        RippleModule,
-        ToolbarModule,
-        StyleClassModule,
-        TableModule,
-        CalendarModule,
-        DialogModule,
-        DropdownModule,
-        InputTextModule,
-        InputTextareaModule,
-        NgIf,
-        ConfirmDialogModule,
-        ReactiveFormsModule,
-    ],
-  exports:[RouterModule]
+  imports: [
+    FormsModule,
+    NgForOf,
+    CardModule,
+    ButtonModule,
+    RippleModule,
+    ToolbarModule,
+    StyleClassModule,
+    TableModule,
+    CalendarModule,
+    DialogModule,
+    DropdownModule,
+    InputTextModule,
+    InputTextareaModule,
+    NgIf,
+    ConfirmDialogModule,
+    ReactiveFormsModule
+  ],
+  exports: [RouterModule]
 })
-export class TasksCategoriesModule { }
+export class TasksCategoriesModule {
+}

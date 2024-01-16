@@ -3,46 +3,36 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 import {BehaviorSubject} from "rxjs";
 import {FormBuilder} from "@angular/forms";
-
-export interface category {
-  name: string
-  id: string
-  description?: string
-}
+import {Category} from "../../../shared/interfaces";
+import {CATEGORY_COLS} from "../../const/const";
 
 @Component({
-  selector: 'app-adding-deleting-categories',
-  templateUrl: './adding-deleting-categories.component.html',
-  styleUrls: ['./adding-deleting-categories.component.scss'],
-  providers: [TransferringCategoryService, MessageService, ConfirmationService,],
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.scss'],
+  providers: [TransferringCategoryService, MessageService, ConfirmationService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddingDeletingCategoriesComponent implements OnInit {
+export class CategoriesComponent {
 
-  public $submitted: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+  public $submitted: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public categoryDialog: boolean = false;
 
   public category: any;
 
-  public categories: any;
+  public categories: any = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
 
-  cols: any[] = [
-    {field: 'name', header: 'Название категории',},
-    {field: 'description', header: 'Описание категории',},
-  ]
-  public categoryForm: any
+  public categoryForm: any = this.formBuilder.group<Category>({description: "", id: "", name: ""});
+
+  public cols: any[] = CATEGORY_COLS;
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
-              private transServise: TransferringCategoryService,
+              private transService: TransferringCategoryService,
               private formBuilder: FormBuilder,) {
   }
 
-  ngOnInit() {
-    this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories
-    this.categoryForm = this.formBuilder.group<category>({description: "", id: "", name: ""})
-  }
 
   hideDialog() {
     this.categoryDialog = false;
@@ -66,7 +56,7 @@ export class AddingDeletingCategoriesComponent implements OnInit {
         this.category.id = this.createId();
         this.categories.push(this.category);
       }
-      this.transServise.getUserCategory(this.categories)
+      this.transService.getUserCategory(this.categories)
       this.categories = [...this.categories];
       this.categoryDialog = false;
     }
@@ -75,7 +65,7 @@ export class AddingDeletingCategoriesComponent implements OnInit {
     this.category = {};
   }
 
-  editCategory(category: category) {
+  editCategory(category: Category) {
     this.categoryForm.setValue({
       name: category.name,
       description: category.description,
@@ -85,14 +75,14 @@ export class AddingDeletingCategoriesComponent implements OnInit {
     this.categoryDialog = true;
   }
 
-  deleteCategory(category: category) {
+  deleteCategory(category: Category) {
     this.confirmationService.confirm({
       message: 'Вы правда хотите удалить категорию ' + this.category.name + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.categories = this.categories.filter((val: { id: string; }) => val.id !== category.id);
-        this.transServise.getUserCategory(this.categories);
+        this.transService.getUserCategory(this.categories);
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Category', life: 3000});
       }
 
