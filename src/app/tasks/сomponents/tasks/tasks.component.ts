@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
-import {Category, Task} from "../../../shared/interfaces";
+import {Category, Cols, Task} from "../../../shared/interfaces";
 import {BehaviorSubject} from "rxjs";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {TASK_COLS, TASK_PRIORITY, TASK_STATUS} from "../../const/const";
 
 @Component({
@@ -25,15 +25,13 @@ export class TasksComponent {
 
   public currentDate: Date = new Date();
 
-  public cols: any[] = TASK_COLS;
+  public cols: Cols[] = TASK_COLS;
 
-  public tasks: Task[] = [];
+  public tasks: Task[] = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').tasks;
 
   public categories: Category[] = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
 
-  public task: any = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').tasks;
-
-  public taskForm: any = this.fb.group<Task>({
+  public taskForm: FormGroup = this.fb.group<Task>({
       category: "",
       date: "",
       id: "",
@@ -43,6 +41,9 @@ export class TasksComponent {
       user: ""
     }
   );
+
+  public task: Task = this.taskForm.value;
+
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
@@ -56,8 +57,8 @@ export class TasksComponent {
   }
 
   openNew() {
-    this.taskForm.reset()
-    this.task = {}
+    this.taskForm.reset();
+    this.task = this.taskForm.value;
     this.$submitted.next(false);
     this.taskDialog = true;
   }
@@ -78,12 +79,15 @@ export class TasksComponent {
         this.tasks.push(this.task);
       }
       this.transService.GetUserTask(this.tasks);
+
       this.tasks = [...this.tasks];
       this.taskDialog = false;
     }
-    this.tasks = [...this.task];
+    console.log(this.tasks)
+    this.tasks = [...this.taskForm.value];
+    console.log(this.tasks)
     this.taskDialog = false;
-    this.task = {};
+    this.task = this.taskForm.value;
   }
 
   editTask(task: Task) {
@@ -101,18 +105,18 @@ export class TasksComponent {
   }
 
 
-  createId(): string {
-    let id = '';
-    let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < 5; i++) {
+  private createId(): string {
+    let id: string = '';
+    let chars: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i: number = 0; i < 5; i++) {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return id;
   }
 
-  findIndexById(id: string): number {
-    let index = -1;
-    for (let i = 0; i < this.tasks.length; i++) {
+  private findIndexById(id: string): number {
+    let index: number = -1;
+    for (let i: number = 0; i < this.tasks.length; i++) {
       if (this.tasks[i].id === id) {
         index = i;
         break;

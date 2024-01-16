@@ -17,16 +17,16 @@
         </th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns" let-Category>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-value>
       <tr>
         <td *ngFor="let col of columns">
           {{rowData[col.field]}}
         </td>
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success table-button"
-                  (click)="editCategory(category)"></button>
+                  (click)="editCategory(value)"></button>
           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                  (click)="deleteCategory(category)"></button>
+                  (click)="deleteCategory(value)"></button>
         </td>
 
       </tr>

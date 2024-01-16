@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component, OnInit,} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 import {BehaviorSubject} from "rxjs";
-import {FormBuilder} from "@angular/forms";
-import {Category} from "../../../shared/interfaces";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Category, Cols} from "../../../shared/interfaces";
 import {CATEGORY_COLS} from "../../const/const";
 
 @Component({
@@ -21,11 +21,16 @@ export class CategoriesComponent {
 
   public category: any;
 
-  public categories: any = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
+  public categories: Category[] = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
 
-  public categoryForm: any = this.formBuilder.group<Category>({description: "", id: "", name: ""});
+  public categoryForm: FormGroup = this.formBuilder.group<Category>({
+      description: "",
+      id: "",
+      name: ""
+    }
+  );
 
-  public cols: any[] = CATEGORY_COLS;
+  public cols: Cols[] = CATEGORY_COLS;
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
@@ -77,7 +82,7 @@ export class CategoriesComponent {
 
   deleteCategory(category: Category) {
     this.confirmationService.confirm({
-      message: 'Вы правда хотите удалить категорию ' + this.category.name + '?',
+      message: 'Вы правда хотите удалить категорию ' + category.name + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {

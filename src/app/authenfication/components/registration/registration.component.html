@@ -1,9 +1,5 @@
-<div style="position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%) ">
-  <a style="font-size: 37px">Регистрация </a>
+<div class="center">
+  <a class="font">Регистрация </a>
   <form [formGroup]="registrationForm" (ngSubmit)="submitRegistration()">
     <small class="p-invalid" *ngIf="this.registrationInvalid">Адресс электроной почты уже используется.</small>
     <p><input pInputText placeholder="Email" type="email" formControlName="email"></p>
@@ -11,8 +7,8 @@
     <p><input pInputText placeholder="пароль" class="p-inputted" type="password" formControlName="password"></p>
     <p>
       <button [disabled]="!registrationForm.valid"
-              style="background-color: darkslategray; border-color: darkslategray;width: 210px" pButton class="p-button"
-              icon="pi pi-play" type="submit">Зарегистрироваться
+              pButton class="p-button buttonColour" icon="pi pi-play" type="submit">
+        Зарегистрироваться
       </button>
     </p>
   </form>
