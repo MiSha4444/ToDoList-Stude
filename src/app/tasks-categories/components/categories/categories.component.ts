@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit,} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, signal, WritableSignal,} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 import {BehaviorSubject} from "rxjs";
@@ -13,12 +13,11 @@ import {CATEGORY_COLS} from "../../const/const";
   providers: [TransferringCategoryService, MessageService, ConfirmationService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoriesComponent implements OnInit{
+export class CategoriesComponent implements OnInit {
 
-  public $submitted: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private submitted: WritableSignal<boolean> = signal(false);
 
   public categoryDialog: boolean = false;
-
 
   public categories: Category[] = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
 
@@ -38,6 +37,7 @@ export class CategoriesComponent implements OnInit{
       this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
     });
   }
+
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
               private transService: TransferringCategoryService,
@@ -47,18 +47,18 @@ export class CategoriesComponent implements OnInit{
 
   public hideDialog() {
     this.categoryDialog = false;
-    this.$submitted.next(false);
+    this.submitted.set(false);
   }
 
   public OpenNew() {
     this.categoryForm.reset()
     this.category = this.categoryForm.value;
-    this.$submitted.next(false);
+    this.submitted.set(false);
     this.categoryDialog = true;
   }
 
   public saveCategory() {
-    this.$submitted.next(true);
+    this.submitted.set(true);
     this.category = this.categoryForm.value
     if (this.category.name.trim()) {
       if (this.category.id) {
