@@ -31,6 +31,15 @@ export class TasksComponent implements OnInit {
 
   public categories: Category[] = [];
 
+  public ngOnInit() {
+    this.transService.tasks$.subscribe(() => {
+      this.tasks = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').tasks;
+    });
+    this.transService.categories$.subscribe(() => {
+      this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
+    });
+  }
+
   public taskForm: FormGroup = this.fb.group<Task>({
       category: "",
       date: "",
@@ -44,15 +53,6 @@ export class TasksComponent implements OnInit {
 
   public task: Task = this.taskForm.value;
 
-  public ngOnInit() {
-    this.transService.tasks$.subscribe(() => {
-      this.tasks = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').tasks;
-    });
-
-    this.transService.categories$.subscribe(() => {
-      this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
-    });
-  }
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
@@ -95,9 +95,7 @@ export class TasksComponent implements OnInit {
       this.tasks = [...this.tasks];
       this.taskDialog = false;
     }
-    console.log(this.tasks)
     this.tasks = [...this.taskForm.value];
-    console.log(this.tasks)
     this.taskDialog = false;
     this.task = this.taskForm.value;
   }

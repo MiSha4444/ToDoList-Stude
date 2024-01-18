@@ -58,21 +58,21 @@
         <label class="p-mb-3">Категория</label>
         <div class="p-form grid p-grid">
           <div>
-            <p-dropdown formControlName="Category" appendTo="body" optionLabel="name" optionValue="name" name="category"
+            <p-dropdown formControlName="category" appendTo="body" optionLabel="name" optionValue="name" name="category"
                         [options]="categories"
             ></p-dropdown>
           </div>
         </div>
       </div>
       <div class="p-field">
-        <label class="p-mb-3">Статус</label>
+        <label for="status" class="p-mb-3">Статус</label>
         <div>
           <p-dropdown formControlName="status" appendTo="body" id="status" name="status" [options]="status"
           ></p-dropdown>
         </div>
       </div>
       <div class="p-field">
-        <label class="p-mb-3">Приоритет задачи</label>
+        <label for="priority" class="p-mb-3">Приоритет задачи</label>
         <div class="p-form grid p-grid">
           <div>
             <p-dropdown formControlName='priority' appendTo="body" id="priority" name="priority" [options]="priority"
