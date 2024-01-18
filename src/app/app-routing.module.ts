@@ -8,12 +8,12 @@ import {
 import {
   CategoriesComponent
 } from "./tasks-categories/components/categories/categories.component";
-import {gurdsGuard} from "./gurds.guard";
+import {GuardAuth, gurdsGuard} from "./gurds.guard";
 import {ExitComponent} from "./authenfication/components/exit/exit.component";
 
 const routes: Routes = [
-  {path: 'Authorization', component: AuthorizationComponent},
-  {path: 'Registration', component: RegistrationComponent},
+  {path: 'Authorization', component: AuthorizationComponent, canActivate: [GuardAuth]},
+  {path: 'Registration', component: RegistrationComponent, canActivate: [GuardAuth]},
   {path: 'Tasks', component: TasksComponent, canActivate: [gurdsGuard]},
   {path: 'TasksCategories', component: CategoriesComponent, canActivate: [gurdsGuard]},
   {path: 'Exit', component: ExitComponent, canActivate: [gurdsGuard]}
