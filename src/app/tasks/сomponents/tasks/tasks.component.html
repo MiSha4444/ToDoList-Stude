@@ -21,7 +21,7 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns" let-value>
       <tr>
         <td *ngFor="let col of columns">
-          {{rowData[col.field]}}
+          {{rowData[col.field] }}
         </td>
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2 table-button"
@@ -29,9 +29,6 @@
           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                   (click)="deleteTask(value)"></button>
         </td>
-        <th>
-          <p></p> <!--table-header для технической колонки с кнопками-->
-        </th>
       </tr>
     </ng-template>
   </p-table>
@@ -42,9 +39,6 @@
             styleClass="p-fluid">
 
     <ng-template pTemplate="content">
-      <div class="p-field">
-        <small class="p-invalid" *ngIf="$submitted && !task.name">Поля имя и задача обязательны.</small>
-      </div>
       <div class="p-field">
         <label for="user">Имя исполнителя</label>
         <input formControlName="user" pInputText type="text" id="user">
@@ -90,7 +84,7 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-      <button pButton pRipple label="Выйти" icon="pi pi-times" class="p-button-text"
+      <button pButton pRipple label="Отмена" icon="pi pi-times" class="p-button-text"
               (click)="hideDialog()"></button>
       <button pButton pRipple label="Сохранить" icon="pi pi-check" class="p-button-text"
               (click)="saveTask()"></button>

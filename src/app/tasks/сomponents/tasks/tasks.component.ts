@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
 import {Category, Cols, Task} from "../../../shared/interfaces";
@@ -13,7 +13,7 @@ import {TASK_COLS, TASK_PRIORITY, TASK_STATUS} from "../../const/const";
   providers: [MessageService, ConfirmationService, TransferringCategoryService]
 })
 
-export class TasksComponent {
+export class TasksComponent implements OnInit {
 
   public $submitted: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
@@ -27,9 +27,9 @@ export class TasksComponent {
 
   public cols: Cols[] = TASK_COLS;
 
-  public tasks: Task[] = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').tasks;
+  public tasks: Task[] = [];
 
-  public categories: Category[] = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
+  public categories: Category[] = [];
 
   public taskForm: FormGroup = this.fb.group<Task>({
       category: "",
@@ -44,6 +44,15 @@ export class TasksComponent {
 
   public task: Task = this.taskForm.value;
 
+  public ngOnInit() {
+    this.transService.tasks$.subscribe(() => {
+      this.tasks = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').tasks;
+    });
+
+    this.transService.categories$.subscribe(() => {
+      this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
+    });
+  }
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
@@ -51,25 +60,29 @@ export class TasksComponent {
               private fb: FormBuilder) {
   }
 
-  hideDialog() {
+  public hideDialog() {
     this.taskDialog = false;
     this.$submitted.next(false);
   }
 
-  openNew() {
+  public openNew() {
     this.taskForm.reset();
     this.task = this.taskForm.value;
     this.$submitted.next(false);
     this.taskDialog = true;
   }
 
-  saveTask() {
+  public saveTask() {
     this.$submitted.next(true);
     this.task = this.taskForm.value
-    this.task.date = this.task.date ? this.task.date.toLocaleString({
+    const date: Date = new Date(this.task.date);
+    this.task.date = this.task.date ? date.toLocaleString('ru-RU', {
       day: '2-digit',
       month: '2-digit',
-      year: '2-digit'
+      year: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
     }) : '';
     if (this.task.name.trim()) {
       if (this.task.id) {
@@ -78,8 +91,7 @@ export class TasksComponent {
         this.task.id = this.createId();
         this.tasks.push(this.task);
       }
-      this.transService.GetUserTask(this.tasks);
-
+      this.transService.updateUserTasks(this.tasks);
       this.tasks = [...this.tasks];
       this.taskDialog = false;
     }
@@ -90,7 +102,7 @@ export class TasksComponent {
     this.task = this.taskForm.value;
   }
 
-  editTask(task: Task) {
+  public editTask(task: Task) {
     this.taskForm.setValue({
       name: task.name,
       category: task.category,
@@ -125,14 +137,14 @@ export class TasksComponent {
     return index;
   }
 
-  deleteTask(task: Task) {
+  public deleteTask(task: Task) {
     this.confirmationService.confirm({
       message: 'Вы правда хотите удалить задачу ' + task.name + '?',
       header: 'Удаление задачи',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.tasks = this.tasks.filter(val => val.id !== task.id);
-        this.transService.GetUserTask(this.tasks);
+        this.transService.updateUserTasks(this.tasks);
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Task Deleted', life: 3000});
       }
 
