@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-registration',
@@ -18,14 +19,14 @@ export class RegistrationComponent {
     username: new FormControl('')
   })
 
-  public registrationInvalid: boolean = false
+  public registrationInvalid: BehaviorSubject<boolean> = new BehaviorSubject(false)
 
-  constructor(private router: Router) {
+  public constructor(private router: Router) {
   }
 
-  submitRegistration() {
+  public submitRegistration() {
     if (localStorage.getItem(this.registrationForm.value.email)) {
-      this.registrationInvalid = true;
+      this.registrationInvalid.next(true);
       return;
     }
     let user = this.registrationForm.value;
