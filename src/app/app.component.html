@@ -1,12 +1,12 @@
-<p-menubar [model]="items" class="p-menubar">
-  <ng-template pTemplate="end" >
-    <a>{{authorizationUser}}</a>
-  </ng-template>
-</p-menubar>
+<div class="headerMargin">
+  <p-menubar [model]="items" class="p-menubar">
+    <ng-template pTemplate="end">
+      <a>{{authorizationUser}}</a>
+    </ng-template>
+  </p-menubar>
+</div>
 <div>
-    <div>
-        <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
 </div>
 
 
