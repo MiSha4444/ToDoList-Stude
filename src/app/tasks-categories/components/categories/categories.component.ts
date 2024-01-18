@@ -13,13 +13,12 @@ import {CATEGORY_COLS} from "../../const/const";
   providers: [TransferringCategoryService, MessageService, ConfirmationService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CategoriesComponent {
+export class CategoriesComponent implements OnInit{
 
   public $submitted: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public categoryDialog: boolean = false;
 
-  public category: any;
 
   public categories: Category[] = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
 
@@ -30,8 +29,15 @@ export class CategoriesComponent {
     }
   );
 
+  public category: Category = this.categoryForm.value;
+
   public cols: Cols[] = CATEGORY_COLS;
 
+  ngOnInit() {
+    this.transService.categories$.subscribe((categories) => {
+      this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
+    });
+  }
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
               private transService: TransferringCategoryService,
@@ -39,19 +45,19 @@ export class CategoriesComponent {
   }
 
 
-  hideDialog() {
+  public hideDialog() {
     this.categoryDialog = false;
     this.$submitted.next(false);
   }
 
-  OpenNew() {
+  public OpenNew() {
     this.categoryForm.reset()
-    this.category = {};
+    this.category = this.categoryForm.value;
     this.$submitted.next(false);
     this.categoryDialog = true;
   }
 
-  saveCategory() {
+  public saveCategory() {
     this.$submitted.next(true);
     this.category = this.categoryForm.value
     if (this.category.name.trim()) {
@@ -61,16 +67,16 @@ export class CategoriesComponent {
         this.category.id = this.createId();
         this.categories.push(this.category);
       }
-      this.transService.getUserCategory(this.categories)
+      this.transService.updateUserCategories(this.categories)
       this.categories = [...this.categories];
       this.categoryDialog = false;
     }
-    this.categories = [...this.category];
+    this.categories = [...this.categoryForm.value];
     this.categoryDialog = false;
-    this.category = {};
+    this.category = this.categoryForm.value;
   }
 
-  editCategory(category: Category) {
+  public editCategory(category: Category) {
     this.categoryForm.setValue({
       name: category.name,
       description: category.description,
@@ -80,21 +86,21 @@ export class CategoriesComponent {
     this.categoryDialog = true;
   }
 
-  deleteCategory(category: Category) {
+  public deleteCategory(category: Category) {
     this.confirmationService.confirm({
       message: 'Вы правда хотите удалить категорию ' + category.name + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.categories = this.categories.filter((val: { id: string; }) => val.id !== category.id);
-        this.transService.getUserCategory(this.categories);
+        this.transService.updateUserCategories(this.categories);
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Category', life: 3000});
       }
 
     });
   }
 
-  findIndexById(id: string): number {
+  private findIndexById(id: string): number {
     let index = -1;
     for (let i = 0; i < this.categories.length; i++) {
       if (this.categories[i].id === id) {
@@ -105,7 +111,7 @@ export class CategoriesComponent {
     return index;
   }
 
-  createId(): string {
+  private createId(): string {
     let id = '';
     let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for (let i = 0; i < 5; i++) {

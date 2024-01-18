@@ -40,9 +40,6 @@
 
     <ng-template pTemplate="content">
       <div class="p-field">
-        <small class="p-invalid" *ngIf="$submitted && !category.name">Заполните обязательные поля!</small>
-      </div>
-      <div class="p-field">
         <label for="user">Название категории</label>
         <input formControlName="name" pInputText type="text" id="user">
       </div>
@@ -57,7 +54,7 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-      <button pButton pRipple label="Выйти" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+      <button pButton pRipple label="Отмена" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
       <button pButton pRipple label="Сохранить" icon="pi pi-check" class="p-button-text"
               (click)="saveCategory()"></button>
     </ng-template>
