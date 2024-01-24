@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   providers: [ConfirmationService]
 })
 export class ExitComponent implements OnInit {
-  constructor(public confirmationService: ConfirmationService, private router: Router) {
+  public constructor(public confirmationService: ConfirmationService, private router: Router) {
   }
 
   public ngOnInit() {
