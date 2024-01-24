@@ -26,11 +26,11 @@ export class RegistrationComponent {
 
   public submitRegistration() {
     if (localStorage.getItem(this.registrationForm.value.email)) {
-      this.registrationInvalid.next(true)
+      this.registrationInvalid.next(true);
       return
     }
     let user = this.registrationForm.value;
-    let newUserData = {...user, tasks: [], categories: []}
+    let newUserData = {...user, tasks: [], categories: []};
     localStorage.setItem(this.registrationForm.value.email, JSON.stringify(newUserData));
     this.router.navigate(['Authorization']);
   }
