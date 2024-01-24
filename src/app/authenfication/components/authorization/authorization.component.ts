@@ -24,7 +24,7 @@ export class AuthorizationComponent{
 
   });
 
-  constructor(private router: Router) {
+  public constructor(private router: Router) {
   }
 
   public checkUser() {
