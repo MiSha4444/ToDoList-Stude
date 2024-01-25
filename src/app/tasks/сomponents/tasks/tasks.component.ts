@@ -38,7 +38,7 @@ export class TasksComponent implements OnInit {
     this.transService.categories$.subscribe(() => {
       this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
     });
-  }
+  };
 
   public taskForm: FormGroup = this.fb.group<Task>({
       category: "",
@@ -51,14 +51,14 @@ export class TasksComponent implements OnInit {
     }
   );
 
-  public task: Task = this.taskForm.value;
+  public task: Task = this.taskForm.value
 
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
               public transService: TransferringCategoryService,
               private fb: FormBuilder) {
-  }
+  };
 
   public hideDialog() {
     this.taskDialog = false;

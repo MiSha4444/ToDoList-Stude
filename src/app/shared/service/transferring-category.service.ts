@@ -15,7 +15,7 @@ export class TransferringCategoryService {
     localStorage.setItem(login, JSON.stringify(userData));
 
     this.tasksSubject.next(tasks);
-  }
+  };
 
   public updateUserCategories(categories: Category[]) {
     let login: string = localStorage.getItem('авторизован') ?? '';
@@ -24,5 +24,5 @@ export class TransferringCategoryService {
     localStorage.setItem(login, JSON.stringify(userData));
 
     this.categoriesSubject.next(categories);
-  }
+  };
 }
