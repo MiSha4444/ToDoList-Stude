@@ -63,7 +63,7 @@ export class TasksComponent implements OnInit {
   public hideDialog() {
     this.taskDialog = false;
     this.$submitted.next(false);
-  }
+  };
 
   public openNew() {
     this.taskForm.reset();
