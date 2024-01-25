@@ -13,7 +13,7 @@ import {BehaviorSubject} from "rxjs";
 
 export class AuthorizationComponent{
 
-  public $authInvalid: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+  public $authInvalid: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public authorizationForm: FormGroup =  new FormGroup({
     login: new FormControl('', [
@@ -25,7 +25,7 @@ export class AuthorizationComponent{
   });
 
   public constructor(private router: Router) {
-  }
+  };
 
   public checkUser() {
     for (let i = 0; i < localStorage.length; i++) {
@@ -42,6 +42,6 @@ export class AuthorizationComponent{
         }
       }
     }
-  }
+  };
 
 }
