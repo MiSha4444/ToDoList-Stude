@@ -17,22 +17,22 @@ export class RegistrationComponent {
     ]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     username: new FormControl('')
-  })
+  });
 
   public registrationInvalid: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   public constructor(private router: Router) {
-  }
+  };
 
   public submitRegistration() {
     if (localStorage.getItem(this.registrationForm.value.email)) {
       this.registrationInvalid.next(true);
-      return
+      return;
     }
     let user = this.registrationForm.value;
     let newUserData = {...user, tasks: [], categories: []};
     localStorage.setItem(this.registrationForm.value.email, JSON.stringify(newUserData));
     this.router.navigate(['Authorization']);
-  }
+  };
 
 }
