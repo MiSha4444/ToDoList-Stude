@@ -36,7 +36,7 @@ export class CategoriesComponent implements OnInit {
     this.transService.categories$.subscribe((categories) => {
       this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
     });
-  }
+  };
 
   constructor(public messageService: MessageService,
               public confirmationService: ConfirmationService,
@@ -48,7 +48,7 @@ export class CategoriesComponent implements OnInit {
   public hideDialog() {
     this.categoryDialog = false;
     this.submitted.set(false);
-  }
+  };
 
   public OpenNew() {
     this.categoryForm.reset()
