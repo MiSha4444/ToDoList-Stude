@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit, signal, WritableSignal,} from '@angular/core';
 import {ConfirmationService, MessageService} from "primeng/api";
 import {TransferringCategoryService} from "../../../shared/service/transferring-category.service";
-import {BehaviorSubject} from "rxjs";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Category, Cols} from "../../../shared/interfaces";
 import {CATEGORY_COLS} from "../../const/const";
