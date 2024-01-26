@@ -19,11 +19,11 @@ export class TasksComponent implements OnInit {
 
   public taskDialog: boolean = false;
 
-  public status: string[] = TASK_STATUS;
+  public status: string[] = TASK_STATUS
 
   public priority: string[] = TASK_PRIORITY;
 
-  public currentDate: Date = new Date();
+  public currentDate: Date = new Date()
 
   public cols: Cols[] = TASK_COLS;
 
@@ -70,7 +70,7 @@ export class TasksComponent implements OnInit {
     this.task = this.taskForm.value;
     this.$submitted.next(false);
     this.taskDialog = true;
-  }
+  };
 
   public saveTask() {
     this.$submitted.next(true);
