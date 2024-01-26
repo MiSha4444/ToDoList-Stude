@@ -32,7 +32,7 @@ export class CategoriesComponent implements OnInit {
   public cols: Cols[] = CATEGORY_COLS;
 
   ngOnInit() {
-    this.transService.categories$.subscribe((categories) => {
+    this.transService.categories$.subscribe(() => {
       this.categories = JSON.parse(localStorage.getItem(localStorage.getItem('авторизован') ?? '') ?? '').categories;
     });
   };
@@ -54,7 +54,7 @@ export class CategoriesComponent implements OnInit {
     this.category = this.categoryForm.value;
     this.submitted.set(false);
     this.categoryDialog = true;
-  }
+  };
 
   public saveCategory() {
     this.submitted.set(true);
