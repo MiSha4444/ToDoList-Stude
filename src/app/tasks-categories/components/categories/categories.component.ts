@@ -73,7 +73,7 @@ export class CategoriesComponent implements OnInit {
     this.categories = [...this.categoryForm.value];
     this.categoryDialog = false;
     this.category = this.categoryForm.value;
-  }
+  };
 
   public editCategory(category: Category) {
     this.categoryForm.setValue({
@@ -96,7 +96,7 @@ export class CategoriesComponent implements OnInit {
         this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Category', life: 3000});
       }
 
-    });
+    })
   }
 
   private findIndexById(id: string): number {
