@@ -1,4 +1,5 @@
 import {MenuBarHeader} from "../interfaces";
+import {CanActivateFn} from '@angular/router';
 
 export const MENU_BAR: MenuBarHeader[] = [
   {
@@ -19,3 +20,13 @@ export const MENU_BAR: MenuBarHeader[] = [
     ]
   },
 ];
+
+
+export const NO_AUTH_GUARD: CanActivateFn = (): boolean => {
+  return localStorage.getItem('авторизован') !== '';
+};
+
+
+export const AUTH_GUARD: CanActivateFn = (): boolean => {
+  return localStorage.getItem('авторизован') === '';
+};
