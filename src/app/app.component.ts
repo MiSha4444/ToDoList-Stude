@@ -8,7 +8,6 @@ import {MenuBarHeader} from "./shared/interfaces";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public items: MenuBarHeader[] = MENU_BAR
-
-  public authorizationUser: string = localStorage.getItem('авторизован') ?? ''
+  public items: MenuBarHeader[] = MENU_BAR;
+  public authorizationUser: string = localStorage.getItem('авторизован') ?? '';
 }
