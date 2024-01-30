@@ -98,7 +98,7 @@ export class TasksComponent implements OnInit {
     this.tasks = [...this.taskForm.value];
     this.taskDialog = false;
     this.task = this.taskForm.value;
-  }
+  };
 
   public editTask(task: Task) {
     this.taskForm.setValue({
@@ -112,7 +112,7 @@ export class TasksComponent implements OnInit {
     })
     this.task = {...task};
     this.taskDialog = true;
-  };
+  }
 
 
   private createId(): string {
@@ -122,7 +122,7 @@ export class TasksComponent implements OnInit {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return id;
-  }
+  };
 
   private findIndexById(id: string): number {
     let index: number = -1;
