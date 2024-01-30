@@ -97,7 +97,7 @@ export class CategoriesComponent implements OnInit {
       }
 
     })
-  }
+  };
 
   private findIndexById(id: string): number {
     let index = -1;
@@ -117,5 +117,5 @@ export class CategoriesComponent implements OnInit {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return id;
-  }
+  };
 }
