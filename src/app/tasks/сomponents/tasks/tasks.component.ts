@@ -112,7 +112,7 @@ export class TasksComponent implements OnInit {
     })
     this.task = {...task};
     this.taskDialog = true;
-  }
+  };
 
 
   private createId(): string {
@@ -133,7 +133,7 @@ export class TasksComponent implements OnInit {
       }
     }
     return index;
-  }
+  };
 
   public deleteTask(task: Task) {
     this.confirmationService.confirm({
