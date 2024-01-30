@@ -70,7 +70,7 @@ export class TasksComponent implements OnInit {
     this.task = this.taskForm.value;
     this.$submitted.next(false);
     this.taskDialog = true;
-  };
+  }
 
   public saveTask() {
     this.$submitted.next(true);
@@ -112,7 +112,7 @@ export class TasksComponent implements OnInit {
     })
     this.task = {...task};
     this.taskDialog = true;
-  }
+  };
 
 
   private createId(): string {
