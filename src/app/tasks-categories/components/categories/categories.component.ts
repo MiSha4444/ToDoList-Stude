@@ -73,7 +73,7 @@ export class CategoriesComponent implements OnInit {
     this.categories = [...this.categoryForm.value];
     this.categoryDialog = false;
     this.category = this.categoryForm.value;
-  };
+  }
 
   public editCategory(category: Category) {
     this.categoryForm.setValue({
@@ -83,7 +83,7 @@ export class CategoriesComponent implements OnInit {
     })
     this.category = {...category};
     this.categoryDialog = true;
-  }
+  };
 
   public deleteCategory(category: Category) {
     this.confirmationService.confirm({
@@ -108,7 +108,7 @@ export class CategoriesComponent implements OnInit {
       }
     }
     return index;
-  }
+  };
 
   private createId(): string {
     let id = '';
