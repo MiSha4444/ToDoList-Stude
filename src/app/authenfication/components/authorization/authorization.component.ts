@@ -35,7 +35,7 @@ export class AuthorizationComponent{
         let password = JSON.parse(login).password;
         if (email == this.authorizationForm.value.login && password == this.authorizationForm.value.password) {
           localStorage.setItem('авторизован', email);
-          this.router.navigate(['Tasks']).then(r => ['Authorization']);
+          this.router.navigate(['Tasks']);
           break;
         } else {
           this.$authInvalid.next(true);
