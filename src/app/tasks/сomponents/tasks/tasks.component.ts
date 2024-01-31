@@ -51,7 +51,7 @@ export class TasksComponent implements OnInit {
     }
   );
 
-  public task: Task = this.taskForm.value
+  public task: Task = this.taskForm.value;
 
 
   constructor(public messageService: MessageService,
