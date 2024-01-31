@@ -11,11 +11,11 @@ import {BehaviorSubject} from "rxjs";
   providers: [TransferringCategoryService],
 })
 
-export class AuthorizationComponent{
+export class AuthorizationComponent {
 
   public $authInvalid: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  public authorizationForm: FormGroup =  new FormGroup({
+  public authorizationForm: FormGroup = new FormGroup({
     login: new FormControl('', [
       Validators.email,
       Validators.required,
@@ -28,7 +28,7 @@ export class AuthorizationComponent{
   };
 
   public checkUser() {
-    for (let i = 0; i < localStorage.length; i++) {
+    for (let i: number = 0; i < localStorage.length; i++) {
       if (localStorage.key(i) != 'авторизован') {
         let email: string = localStorage.key(i) ?? '';
         let login: string = localStorage.getItem(email) ?? '';
