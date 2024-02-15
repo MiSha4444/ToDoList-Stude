@@ -13,7 +13,6 @@ export class TransferringCategoryService {
     let userData = JSON.parse(localStorage.getItem(login) ?? '');
     userData.tasks = tasks;
     localStorage.setItem(login, JSON.stringify(userData));
-
     this.tasksSubject.next(tasks);
   };
 
@@ -22,7 +21,6 @@ export class TransferringCategoryService {
     let userData = JSON.parse(localStorage.getItem(login) ?? '');
     userData.categories = categories;
     localStorage.setItem(login, JSON.stringify(userData));
-
     this.categoriesSubject.next(categories);
   };
 }
