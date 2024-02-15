@@ -19,7 +19,7 @@ export class TasksComponent implements OnInit {
 
   public taskDialog: boolean = false;
 
-  public status: string[] = TASK_STATUS
+  public status: string[] = TASK_STATUS;
 
   public priority: string[] = TASK_PRIORITY;
 
